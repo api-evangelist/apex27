@@ -1,0 +1,326 @@
+aid: apex27
+name: Apex27
+review:
+  question: Does Apex27 publish a reachable public developer surface, and what is its
+    RESO posture?
+  answer: false
+  date: '2026-07-26'
+  reviewer: API Evangelist
+  homeMarket: United Kingdom
+  tier: crm-transaction-tech
+  summary: |
+    Apex27 Limited (apex27.co.uk) is a UK estate agency CRM formed in 2019, sold at
+    £35 per user per month with a 30-day free trial, to sales, lettings and
+    commercial agents. Two real HTTP APIs exist and are live: the Apex27 CRM API on
+    the shared host https://api.apex27.co.uk, and a per-tenant Portal API served from
+    each agency's own Apex27-built website domain with /api appended. Neither is
+    publicly documented. No OpenAPI, Swagger, Postman collection, AsyncAPI, or OData
+    $metadata document was found anywhere, so nothing was harvested into openapi/.
+    Everything recorded below about endpoints and auth comes either from live HTTP
+    probes or from Apex27's OWN published npm packages (author "Apex27"), not from
+    inference.
+
+resoPosture:
+  certified: false
+  posture: No RESO reference found — RESO is a US NAR/MLS construct with no UK
+    counterpart
+  webApiCertification: none
+  dataDictionaryCertification: none
+  dataDictionaryVersion: null
+  resoDirectoryListing: none found
+  upiSupport: false
+  odataMetadataDocument: not served
+  evidence: |
+    Apex27 makes no RESO claim of any kind. No "RESO", "Data Dictionary", "Web API
+    certified", "OData", or "UPI" string appears on apex27.co.uk, its features page,
+    its integrations index, or in either of Apex27's published n8n node packages. A
+    RESO certification-directory listing for Apex27 was searched for and none was
+    found. https://api.apex27.co.uk/$metadata returned HTTP 404 and
+    https://apex27.co.uk/$metadata returned HTTP 404 on 2026-07-26, confirming the
+    API is plain JSON REST and not an OData service.
+    This is the expected and honest answer for the UK. The United Kingdom has no MLS
+    and no cooperative listing database, so there is no industry body mandating a
+    machine-readable listing contract. Residential inventory reaches the market
+    through two commercial portals — Rightmove and Zoopla (plus OnTheMarket) — and
+    the CRM is the pipe. Apex27's own integration pages confirm that model:
+    /integration/rightmove, /integration/zoopla, /integration/onthemarket. The UK
+    substitute for RESO is not a standard at all; it is a portal feed relationship,
+    which is commercial and private per portal.
+
+accessGate:
+  gate: application-approval
+  gated: true
+  selfServe: false
+  whatADeveloperMustSignOrJoin: |
+    A developer cannot obtain an Apex27 CRM API key from the open web. There is no
+    developer signup, no key self-issue form, and no sandbox. The only route is to
+    become an Apex27 CRM customer — sign up for the 30-day trial or a paid seat at
+    https://apex27.co.uk/estate-agent-software-sign-up (£35/user/month, 30-day
+    rolling contract) — and then have a key issued inside the tenant admin panel.
+    Apex27's own Portal API credential text states the key is "Found under Admin
+    Panel > Websites > [Your Website] > Integrations tab > Portal API section",
+    which is a logged-in customer surface. There is no MLS membership, no IDX/VOW
+    licence, and no broker/agent licensing requirement — the gate is purely
+    commercial tenancy in the vendor's SaaS. Classified application-approval rather
+    than self-serve because signing up for the product is not the same as signing up
+    for the API: no public flow issues a key, and no published terms describe
+    third-party developer access.
+  portalConfirmed: false
+  portalNote: |
+    developer.apex27.co.uk returned HTTP 200 but it is NOT a developer portal — it is
+    the wildcard Apex27 CRM tenant login page (title "Log In | Apex27",
+    meta robots noindex, links only to /reset-password, /terms-of-use,
+    /privacy-policy). support.apex27.co.uk behaves identically. Recording a 200 here
+    without opening it would have been a false positive.
+
+openData:
+  publishesOpenData: false
+  note: |
+    Apex27 publishes no open, unlicensed, publicly callable dataset. It is a private
+    SaaS vendor and all data behind its APIs belongs to its agency tenants.
+    The UK's genuinely open property layer sits in the public sector, not with the
+    CRM vendors: HM Land Registry (Price Paid Data, ownership data) and Ordnance
+    Survey (addressing and mapping) publish open-licensed data with real APIs. That
+    is the UK counterweight to the private duopoly, and it is not Apex27's. Apex27
+    does list a /integration/ministry-of-housing and /integration/net-house-prices
+    integration, which consume public-sector housing data rather than publish it.
+
+authModel:
+  crmApi:
+    scheme: API key in request header
+    header: x-api-key
+    oauth2: false
+    openidConnect: false
+    wellKnownOpenidConfiguration: HTTP 404 at
+      https://api.apex27.co.uk/.well-known/openid-configuration and at
+      https://apex27.co.uk/.well-known/openid-configuration (probed 2026-07-26)
+    environments:
+      production: https://api.apex27.co.uk
+      development: https://dev-api.apex27.co.uk
+    pagination: page (min 1) and pageSize (min 25, max 250) query parameters
+    source: Apex27CrmApi.credentials.js in npm package n8n-nodes-apex27crm@1.0.4,
+      published by author "Apex27"
+  portalApi:
+    scheme: API key as a query-string parameter
+    parameter: api_key
+    baseURLPattern: the agency's own Apex27 portal domain with /api appended; the
+      vendor's placeholder is https://portal-abcd1234.apex27.co.uk/api
+    source: Apex27PortalApi.credentials.js and Apex27Portal.node.js in npm package
+      n8n-nodes-apex27portal@0.1.0, published by author "Apex27"
+
+findings:
+  documentationUrlIsDead: |
+    The single most telling finding. Apex27's own published credential definition
+    declares documentationUrl = 'https://docs.apex27.co.uk'. That host returned
+    HTTP 404 with the body "Page not found." on 2026-07-26 (also 404 over plain
+    HTTP and for /api and /index.html). The vendor ships a client library that
+    points developers at documentation that does not exist. There is therefore no
+    public API reference for the Apex27 CRM API at all.
+  githubRepoIsDead: |
+    Both npm packages declare repository https://github.com/apex27/n8n-nodes-apex27crm
+    and .../n8n-nodes-apex27portal. Both returned HTTP 404 — the packages are
+    published to npm but their source repositories are not public. There is no
+    apex27 GitHub organisation (api.github.com/orgs/apex27 returned "Not Found");
+    the github.com/Apex27 user account is an unrelated individual.
+  webhooksExist: |
+    The CRM API exposes webhook subscription management as a first-class resource:
+    GET/POST /webhooks, GET/PUT/DELETE /webhooks/{webhookId}. Apex27's own n8n
+    integration page states the node gives "direct access to the full Apex27 CRM API,
+    covering everything from contacts and listings to viewings, valuations, and
+    webhooks". No public event-type catalogue or payload schema is published.
+  sdks: |
+    No first-party SDK in any language. The only vendor-published client code is the
+    pair of n8n community nodes on npm. Third-party automation coverage exists
+    (Pipedream lists an "Apex 27" app; Apex27 lists Zapier, n8n, Integrately and
+    Stitch on its integrations index) but that is workflow tooling, not an SDK.
+  postman: none found
+  asyncapi: none found
+  graphql: none found
+  mcp: none found
+  llmsTxt: not probed as present; no llms.txt referenced
+  productApiFamily: |
+    The CRM API's resource segmentation, taken verbatim from the vendor's node:
+      - Listings and inventory: listing, listing media, listing rooms, listing links,
+        listing keys (with check-in/check-out), listing notes, listing searches,
+        search regions, global search, availability
+      - Sales pipeline: lead, listing offer, offer, completion, contact order,
+        contact referral, task, notification
+      - Valuation: listing valuation, availability/valuations, request-valuation
+        (portal)
+      - Viewings and inspections: listing viewing, availability/viewings, inspection,
+        listing inspection, listing issue, listing onboarding check
+      - People: contact, contact note, call log, user, branch, client portal
+        (authenticate, log-in-url, sign-in-url)
+      - Tenancy and lettings: tenancy
+      - Documents: document
+      - Platform: webhook
+    The Portal API's segmentation: get-listings, get-listing, get-search-options,
+    get-statistics, contact, request-valuation, add-favourite, remove-favourite,
+    across sales / lettings / land / custom inventory.
+
+probes:
+  - url: https://apex27.co.uk/
+    status: 200
+    note: Marketing site. Confirms UK estate agency CRM, £35/user/month, 30-day free
+      trial, 100+ integrations.
+  - url: https://www.apex27.co.uk/
+    status: 200
+    note: Redirects to apex27.co.uk.
+  - url: https://api.apex27.co.uk/
+    status: 401
+    note: 'Live JSON API host. Body: {"success":false,"message":"Unauthorised.","errors":[]}.
+      Content-Type text/json. Apache. Sets an apex27 session cookie.'
+  - url: https://api.apex27.co.uk/branches
+    status: 401
+  - url: https://api.apex27.co.uk/contacts
+    status: 401
+  - url: https://api.apex27.co.uk/listings
+    status: 401
+  - url: https://api.apex27.co.uk/users
+    status: 401
+  - url: https://api.apex27.co.uk/webhooks
+    status: 401
+  - url: https://api.apex27.co.uk/tenancies
+    status: 401
+  - url: https://api.apex27.co.uk/leads
+    status: 401
+  - url: https://api.apex27.co.uk/tasks
+    status: 401
+  - url: https://api.apex27.co.uk/documents
+    status: 401
+  - url: https://api.apex27.co.uk/properties
+    status: 404
+    note: Not a resource; confirms the 401s above are real routes, not a blanket
+      auth wall.
+  - url: https://dev-api.apex27.co.uk/
+    status: 401
+    note: Development environment declared in the vendor's own credential; live and
+      key-gated, not an open sandbox.
+  - url: https://api.apex27.co.uk/openapi.json
+    status: 404
+  - url: https://api.apex27.co.uk/swagger.json
+    status: 404
+  - url: https://api.apex27.co.uk/swagger
+    status: 404
+  - url: https://api.apex27.co.uk/api-docs
+    status: 404
+  - url: https://api.apex27.co.uk/redoc
+    status: 404
+  - url: https://api.apex27.co.uk/docs
+    status: 404
+  - url: https://api.apex27.co.uk/v1
+    status: 404
+  - url: https://api.apex27.co.uk/$metadata
+    status: 404
+    note: No OData metadata document. Not a RESO Web API.
+  - url: https://api.apex27.co.uk/.well-known/openid-configuration
+    status: 404
+  - url: https://developer.apex27.co.uk/
+    status: 200
+    note: NOT a developer portal. Wildcard CRM tenant login page, meta robots
+      noindex, title "Log In | Apex27".
+  - url: https://developers.apex27.co.uk/
+    status: 404
+  - url: https://docs.apex27.co.uk/
+    status: 404
+    note: 'Body "Page not found." This is the documentationUrl declared inside
+      Apex27''s own published n8n credential.'
+  - url: http://docs.apex27.co.uk/
+    status: 404
+  - url: https://support.apex27.co.uk/
+    status: 200
+    note: Also a tenant login page, not a knowledge base.
+  - url: https://help.apex27.co.uk/
+    status: 404
+  - url: https://kb.apex27.co.uk/
+    status: 404
+  - url: https://status.apex27.co.uk/
+    status: 404
+    note: No public status page.
+  - url: https://apex27.co.uk/api
+    status: 404
+  - url: https://apex27.co.uk/developers
+    status: 404
+  - url: https://apex27.co.uk/docs
+    status: 404
+  - url: https://apex27.co.uk/openapi.json
+    status: 404
+  - url: https://apex27.co.uk/swagger.json
+    status: 404
+  - url: https://apex27.co.uk/api-docs
+    status: 404
+  - url: https://apex27.co.uk/$metadata
+    status: 404
+  - url: https://apex27.co.uk/.well-known/openid-configuration
+    status: 404
+  - url: https://apex27.co.uk/robots.txt
+    status: 200
+    note: Disallows only /cgi-bin/; declares sitemap.
+  - url: https://apex27.co.uk/sitemap.xml
+    status: 200
+    note: 384 URLs. Zero /api, /developer, or /docs entries. The public site has no
+      developer section at all.
+  - url: https://apex27.co.uk/integrations
+    status: 200
+    note: 100+ named integrations including Rightmove, Zoopla, OnTheMarket,
+      PrimeLocation, DocuSign, Signable, Xero, Sage, Zapier, n8n, Integrately.
+  - url: https://apex27.co.uk/integration/n8n
+    status: 200
+    note: 'The closest thing to a public API statement Apex27 publishes: "Our n8n
+      node gives you direct access to the full Apex27 CRM API, covering everything
+      from contacts and listings to viewings, valuations, and webhooks."'
+  - url: https://apex27.co.uk/estate-agent-software-pricing
+    status: 200
+  - url: https://apex27.co.uk/estate-agent-software-sign-up
+    status: 200
+  - url: https://apex27.co.uk/crm-changelog
+    status: 200
+    note: Zero occurrences of "API" in the rendered changelog text.
+  - url: https://registry.npmjs.org/n8n-nodes-apex27crm
+    status: 200
+    note: v1.0.4, author "Apex27". Source of the CRM API endpoint map, x-api-key
+      header, base URLs, and pagination.
+  - url: https://registry.npmjs.org/n8n-nodes-apex27portal
+    status: 200
+    note: v0.1.0, author "Apex27". Source of the Portal API operations and api_key
+      query parameter.
+  - url: https://github.com/apex27/n8n-nodes-apex27crm
+    status: 404
+  - url: https://api.github.com/orgs/apex27
+    status: 404
+  - url: https://www.linkedin.com/company/apex27
+    status: 200
+
+sources:
+  - url: https://apex27.co.uk/
+    type: Website
+    note: Company identity, market, pricing, UK focus.
+  - url: https://apex27.co.uk/integration/n8n
+    type: Documentation
+    note: Only public page that describes the Apex27 CRM API and names webhooks.
+  - url: https://apex27.co.uk/integrations
+    type: Integrations
+    note: Establishes the portal-syndication value chain (Rightmove/Zoopla/OnTheMarket).
+  - url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+    type: Node
+    note: Vendor-published. Contains the full CRM endpoint map, auth header, both
+      environment base URLs, pagination bounds, and the dead documentationUrl.
+  - url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+    type: Node
+    note: Vendor-published. Contains the Portal API operations and api_key auth.
+  - url: https://api.apex27.co.uk/
+    type: API
+    note: Live, key-gated, JSON REST. Every collection probe returned 401.
+
+actions:
+  openapiHarvested: false
+  specsSaved: 0
+  openapiDirectoryCreated: false
+  reason: |
+    No machine-readable contract of any kind is published by Apex27 — no OpenAPI, no
+    Swagger, no Postman collection, no AsyncAPI, and no OData $metadata. The endpoint
+    map recovered from the vendor's npm packages was deliberately NOT turned into a
+    synthesised OpenAPI during bootstrap; only genuinely fetched artifacts belong in
+    openapi/. Any derivation is left to the enrichment pipeline, where it will be
+    labelled as AE-derived rather than provider-published.
+  apisYmlUpdated: true
