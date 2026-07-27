@@ -1,0 +1,79 @@
+generated: '2026-07-26'
+method: searched
+source: npm registry search for "apex27" (2026-07-26); PyPI, Packagist, RubyGems, NuGet and pkg.go.dev
+  returned no Apex27 packages.
+note: Apex27 ships no conventional server-side SDK in any language. The only vendor-published client code
+  is a pair of n8n community nodes on npm, both published by the npm user "james_apex27". They are first-party
+  (they carry the Apex27 name, icon and credential definitions) and they are the de-facto client library
+  for both Apex27 APIs — the CRM node in particular contains the complete request map this repo derived
+  its OpenAPI from.
+registries_checked:
+- registry: npm
+  result: 2 first-party packages
+- registry: pypi
+  result: none (apex27, apex27-api both 404)
+- registry: packagist
+  result: none (0 results)
+- registry: rubygems
+  result: none (0 results)
+- registry: nuget
+  result: none (0 hits)
+- registry: maven-central
+  result: none
+- registry: pkg.go.dev
+  result: none
+- registry: crates.io
+  result: none
+packages:
+- language: javascript
+  registry: npm
+  name: n8n-nodes-apex27crm
+  version: 1.0.4
+  url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  install: npm install n8n-nodes-apex27crm
+  official: true
+  publisher: james_apex27
+  kind: n8n community node
+  api: Apex27 CRM API
+  description: n8n community node for the Apex27 CRM API. Covers 31 resources across contacts, listings,
+    viewings, valuations, tenancies, tasks and webhooks.
+  repository_declared: https://github.com/apex27/n8n-nodes-apex27crm
+  repository_status: 404
+  repository_note: The declared source repository returns HTTP 404; there is no public apex27 GitHub organisation.
+- language: javascript
+  registry: npm
+  name: n8n-nodes-apex27portal
+  version: 0.1.0
+  url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+  install: npm install n8n-nodes-apex27portal
+  official: true
+  publisher: james_apex27
+  kind: n8n community node
+  api: Apex27 Portal API
+  description: n8n community node for the Apex27 Portal API. Covers listing search, single listing retrieval,
+    search options, statistics, enquiries, valuation requests and favourites.
+  repository_declared: https://github.com/apex27/n8n-nodes-apex27portal
+  repository_status: 404
+third_party:
+- name: Zapier
+  url: https://apex27.co.uk/integration/zapier
+  kind: workflow automation
+  official_listing: true
+- name: Integrately
+  kind: workflow automation
+  official_listing: true
+  source: https://apex27.co.uk/integrations
+- name: Stitch
+  kind: data pipeline
+  official_listing: true
+  source: https://apex27.co.uk/integrations
+- name: Pipedream
+  kind: workflow automation
+  official_listing: false
+  note: Pipedream lists an "Apex 27" app; not referenced by Apex27.
+sdk_pointer:
+  wired: false
+  type_withheld: SDKs
+  reason: An n8n community node is a first-party client library, but it only runs inside n8n — it cannot
+    be imported as a general-purpose client in any language. Wiring an SDKs pointer would misreport Apex27
+    as shipping a usable SDK. Packages is wired; SDKs is deliberately not.

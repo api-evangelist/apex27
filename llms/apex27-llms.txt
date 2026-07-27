@@ -1,0 +1,103 @@
+# Apex27
+
+> Apex27 Limited is a United Kingdom estate agency CRM vendor (founded 2019, GBP 35 per user per
+> month) selling cloud software to sales, lettings and commercial agents. It operates two real HTTP
+> APIs — the Apex27 CRM API at api.apex27.co.uk and a per-tenant Portal API that powers
+> Apex27-built agency websites — but publishes no developer portal, no reference documentation and
+> no machine-readable specification. Access is customer-only: keys are issued inside a paying
+> tenant's admin panel. There is no self-serve developer signup and no sandbox.
+
+generated: 2026-07-26
+method: generated
+source: apis.yml + the artifacts in this repository (https://apex27.co.uk/llms.txt returned HTTP 404)
+
+## What an agent needs to know first
+
+- **You cannot get a key from the open web.** The only route to the Apex27 CRM API is to become a
+  paying Apex27 tenant and have a key issued from the CRM admin panel. Do not attempt to register.
+- **Apex27's own documentation link is dead.** The `documentationUrl` declared inside Apex27's
+  published npm credential — https://docs.apex27.co.uk — returned HTTP 404 on 2026-07-26. There is
+  no public API reference for either API.
+- **The specs in this repository are DERIVED, not provider-published.** They were reconstructed
+  mechanically from Apex27's own published n8n community nodes on npm. Paths, methods, parameters
+  and enumerations are faithful; response schemas are unknown and deliberately left open.
+- **RESO does not apply.** The United Kingdom has no MLS and no cooperative listing database, so
+  there is no RESO Web API or Data Dictionary certification for Apex27 or for the UK market. UK
+  listings reach the market through commercial portal feeds (Rightmove, Zoopla, OnTheMarket), not a
+  standard.
+
+## APIs
+
+- [Apex27 CRM API](https://apex27.co.uk/integration/n8n): REST interface over the estate agency CRM.
+  Base URL https://api.apex27.co.uk (development https://dev-api.apex27.co.uk). Authenticates with
+  an `x-api-key` request header. 121 operations across 30 resource families: contacts, call logs,
+  notes, referrals, orders, listings, listing media, rooms, links, offers, valuations, viewings,
+  inspections, issues, keys, onboarding checks, leads, tasks, webhooks, branches, users, tenancies,
+  completions, search regions, saved listing searches, documents, notifications, client portal,
+  availability and global search.
+- [Apex27 Portal API](https://apex27.co.uk/websites): per-tenant, website-facing search and enquiry
+  API. No shared host — the base URL is the agency's own Apex27 portal domain with `/api` appended.
+  Authenticates with an `api_key` query-string parameter. 8 operations: get-listings, get-listing,
+  get-search-options, get-statistics, contact, request-valuation, add-favourite, remove-favourite.
+
+## Specs (API Evangelist derived — not provider-published)
+
+- [Apex27 CRM API OpenAPI 3.1](openapi/apex27-crm-api-openapi.yml): 65 paths, 121 operations.
+- [Apex27 Portal API OpenAPI 3.1](openapi/apex27-portal-api-openapi.yml): 8 paths, 8 operations.
+- [CRM overlay](overlays/apex27-crm-api-overlay.yaml) and [Portal overlay](overlays/apex27-portal-api-overlay.yaml).
+
+## Operating semantics
+
+- [Authentication](authentication/apex27-authentication.yml): two API-key schemes, one in a header
+  (CRM), one in the query string (Portal). No OAuth, no OpenID Connect, no scopes.
+- [Conventions](conventions/apex27-conventions.yml): pagination is `page` + `pageSize` (minimum 25,
+  maximum 250). Incremental sync via `minDtsUpdated` / `minDtsCreatedUpdated`. Field expansion via
+  `includeContacts`, `includeImages`, `includeOffers`, `includeValuations`, `includeRooms`.
+  **No idempotency contract** — creates are not safely retryable. No documented rate limits.
+- [Error catalog](errors/apex27-problem-types.yml): vendor envelope `{success, message, errors}`
+  served as `text/json`, not RFC 9457. The 401 body is `{"success":false,"message":"Unauthorised.","errors":[]}`.
+- [Vocabulary](vocabulary/apex27-vocabulary.yml): the two APIs use different transaction-type
+  vocabularies for the same concept (`Sale`/`Rent`/`Land`/... on the CRM, `sales`/`lettings`/... on
+  the Portal). Check which surface you are on.
+- [Data model](data-model/apex27-data-model.yml): Listing and Contact are the two hubs; almost
+  everything else hangs off one of them.
+- [Webhooks](asyncapi/apex27-webhooks.yml): webhook subscriptions are first-class CRUD at
+  `/webhooks`, but Apex27 publishes no event-type catalogue and no payload schema. Poll with
+  `minDtsUpdated` where the event names are unknown.
+
+## Posture
+
+- [Lifecycle](lifecycle/apex27-lifecycle.yml): no API versioning, no deprecation policy, no SLA, no
+  status page (https://status.apex27.co.uk returns 404).
+- [Conformance](conformance/apex27-conformance.yml): no OAuth, no OIDC, no RFC 9457, no security.txt,
+  no OData, no RESO, no GraphQL, no gRPC. TLS 1.2, SPF and DMARC present; DNSSEC, CAA and API-host
+  HSTS absent.
+- [Domain security](security/apex27-domain-security.yml): probed 2026-07-26.
+- [Well-known](well-known/apex27-well-known.yml): every `/.well-known/` path returned 404.
+- No published compliance programme: no SOC 2, ISO 27001, PCI DSS, Cyber Essentials or GDPR/ICO
+  claim appears anywhere on the site, and no trust centre exists.
+
+## Client libraries
+
+- [Packages](packages/apex27-packages.yml): no conventional SDK in any language. Apex27 publishes
+  two first-party n8n community nodes on npm — `n8n-nodes-apex27crm` and `n8n-nodes-apex27portal`
+  (publisher `james_apex27`) — which are the de-facto client libraries and the source of everything
+  in this repository. Their declared GitHub repositories return 404; there is no public apex27
+  GitHub organisation.
+
+## Agent skills
+
+- [Skill index](skills/_index.yml): packaged operating instructions for the marquee flows, grounded
+  in real operationIds from the derived specs.
+
+## Company
+
+- [Website](https://apex27.co.uk/)
+- [Pricing](https://apex27.co.uk/estate-agent-software-pricing)
+- [Sign up](https://apex27.co.uk/estate-agent-software-sign-up)
+- [Integrations](https://apex27.co.uk/integrations) — 100+ named integrations including Rightmove,
+  Zoopla, OnTheMarket, PrimeLocation, DocuSign, Xero, Zapier and n8n.
+- [CRM changelog](https://apex27.co.uk/crm-changelog) — weekly 1.N releases; contains zero mentions
+  of "API", so API changes are not separately announced.
+- [Blog](https://apex27.co.uk/estate-agency-blog)
+- [Contact](https://apex27.co.uk/contact-apex27)

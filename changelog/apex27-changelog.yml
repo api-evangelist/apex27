@@ -1,0 +1,166 @@
+generated: '2026-07-26'
+method: searched
+source: https://apex27.co.uk/crm-changelog
+scope: 'Product changelog for the Apex27 CRM application. Apex27 publishes NO API changelog: the rendered
+  changelog contains zero occurrences of the string "API", so API-surface changes are not separately announced.
+  Treat this as a product-release signal, not an API contract signal.'
+versioning:
+  scheme: incrementing minor (1.N)
+  current: '1.183'
+  current_date: '2026-07-23'
+  cadence: approximately weekly
+  first_recorded:
+    version: '1.0'
+    date: '2022-05-26'
+  total_entries_published: 184
+api_versioning:
+  scheme: none
+  note: The Apex27 CRM API carries no version segment in its path and no version header. https://api.apex27.co.uk/v1
+    returns HTTP 404.
+breaking_change_policy: null
+entries:
+- version: '1.183'
+  date: '2026-07-23'
+  breaking: null
+  highlights:
+  - 20 new features added.
+  - 1 UI enhancement.
+- version: '1.182'
+  date: '2026-07-16'
+  breaking: null
+  highlights:
+  - 6 new features added.
+- version: '1.181'
+  date: '2026-07-09'
+  breaking: null
+  highlights:
+  - 6 new features added.
+- version: '1.180'
+  date: '2026-07-02'
+  breaking: null
+  highlights:
+  - 28 new features added.
+  - 1 existing feature updated.
+- version: '1.179'
+  date: '2026-06-18'
+  breaking: null
+  highlights:
+  - 16 new features added.
+  - 1 existing feature updated.
+- version: '1.178'
+  date: '2026-06-11'
+  breaking: null
+  highlights:
+  - 8 new features added.
+  - 1 existing feature updated.
+  - 1 UI enhancement.
+- version: '1.177'
+  date: '2026-06-04'
+  breaking: null
+  highlights:
+  - 5 new features added.
+  - 2 UI enhancements.
+- version: '1.176'
+  date: '2026-05-28'
+  breaking: null
+  highlights:
+  - 10 new features added.
+  - 1 existing feature updated.
+- version: '1.175'
+  date: '2026-05-21'
+  breaking: null
+  highlights:
+  - 6 new features added.
+  - 1 existing feature updated.
+- version: '1.174'
+  date: '2026-05-14'
+  breaking: null
+  highlights:
+  - 8 new features added.
+  - 2 existing features updated.
+  - 2 UI enhancements.
+- version: '1.173'
+  date: '2026-05-01'
+  breaking: null
+  highlights:
+  - 11 new features added.
+  - 1 existing feature updated.
+- version: '1.172'
+  date: '2026-04-23'
+  breaking: null
+  highlights:
+  - 10 new features added.
+- version: '1.171'
+  date: '2026-04-16'
+  breaking: null
+  highlights:
+  - 8 new features added.
+  - 1 existing feature updated.
+- version: '1.170'
+  date: '2026-04-09'
+  breaking: null
+  highlights:
+  - 7 new features added.
+  - 1 existing feature updated.
+  - 1 UI enhancement.
+- version: '1.169'
+  date: '2026-03-26'
+  breaking: null
+  highlights:
+  - 10 new features added.
+  - 1 existing feature updated.
+- version: '1.168'
+  date: '2026-03-12'
+  breaking: null
+  highlights:
+  - 10 new features added.
+  - 1 UI enhancement.
+- version: '1.167'
+  date: '2026-03-05'
+  breaking: null
+  highlights:
+  - 8 new features added.
+  - 1 UI enhancement.
+- version: '1.166'
+  date: '2026-02-19'
+  breaking: null
+  highlights:
+  - 6 new features added.
+  - 1 UI enhancement.
+- version: '1.165'
+  date: '2026-02-12'
+  breaking: null
+  highlights:
+  - 19 new features added.
+- version: '1.164'
+  date: '2026-02-05'
+  breaking: null
+  highlights:
+  - 10 new features added.
+  - 1 performance enhancement.
+- version: '1.163'
+  date: '2026-01-29'
+  breaking: null
+  highlights:
+  - 27 new features added.
+  - 2 existing features updated.
+  - 1 performance enhancement.
+- version: '1.162'
+  date: '2025-12-18'
+  breaking: null
+  highlights:
+  - 9 new features added.
+  - 1 existing feature updated.
+- version: '1.161'
+  date: '2025-12-11'
+  breaking: null
+  highlights:
+  - 3 new features added.
+- version: '1.160'
+  date: '2025-11-28'
+  breaking: null
+  highlights:
+  - 3 existing features updated.
+  - 1 performance enhancement.
+entries_note: Recent window only (24 entries). The live changelog is the source of truth and carried 184
+  entries on 2026-07-26.

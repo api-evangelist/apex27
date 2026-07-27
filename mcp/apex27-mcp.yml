@@ -1,0 +1,535 @@
+generated: '2026-07-26'
+method: derived
+status: candidate
+published: false
+source: openapi/apex27-crm-api-openapi.yml, openapi/apex27-portal-api-openapi.yml
+note: Apex27 publishes NO MCP server. This is an API Evangelist CANDIDATE tool surface derived one-to-one
+  from the operations in the derived OpenAPIs, so an agent builder has a starting manifest. Because no
+  server exists, NO MCPServer pointer is wired into apis.yml — wiring one would misreport a provider capability.
+  Any implementation must carry a tenant x-api-key; there is no self-serve key issuance and no sandbox,
+  so an MCP deployment here is customer-side, not vendor-side.
+server:
+  name: apex27
+  transport: http
+  url: null
+auth:
+  crm: x-api-key header (tenant key)
+  portal: api_key query parameter (per-website key)
+tool_count: 129
+tools:
+- name: listContacts
+  description: Get many contacts
+  category: Contacts
+  source_operation: openapi/apex27-crm-api-openapi.yml#listContacts
+- name: createContact
+  description: Create a contact
+  category: Contacts
+  source_operation: openapi/apex27-crm-api-openapi.yml#createContact
+- name: getContact
+  description: Get a contact
+  category: Contacts
+  source_operation: openapi/apex27-crm-api-openapi.yml#getContact
+- name: replaceContact
+  description: Replace a contact in full
+  category: Contacts
+  source_operation: openapi/apex27-crm-api-openapi.yml#replaceContact
+- name: patchContact
+  description: Partially update a contact
+  category: Contacts
+  source_operation: openapi/apex27-crm-api-openapi.yml#patchContact
+- name: deleteContact
+  description: Delete a contact
+  category: Contacts
+  source_operation: openapi/apex27-crm-api-openapi.yml#deleteContact
+- name: listContactCallLogs
+  description: Get many call logs for a contact
+  category: Call Logs
+  source_operation: openapi/apex27-crm-api-openapi.yml#listContactCallLogs
+- name: createContactCallLog
+  description: Create a call log for a contact
+  category: Call Logs
+  source_operation: openapi/apex27-crm-api-openapi.yml#createContactCallLog
+- name: createCallLog
+  description: Create a call log by E.164 number or email
+  category: Call Logs
+  source_operation: openapi/apex27-crm-api-openapi.yml#createCallLog
+- name: updateContactCallLog
+  description: Update a call log
+  category: Call Logs
+  source_operation: openapi/apex27-crm-api-openapi.yml#updateContactCallLog
+- name: deleteContactCallLog
+  description: Delete a call log
+  category: Call Logs
+  source_operation: openapi/apex27-crm-api-openapi.yml#deleteContactCallLog
+- name: listContactNotes
+  description: Get many notes for a contact
+  category: Notes
+  source_operation: openapi/apex27-crm-api-openapi.yml#listContactNotes
+- name: createContactNote
+  description: Create a note on a contact
+  category: Notes
+  source_operation: openapi/apex27-crm-api-openapi.yml#createContactNote
+- name: getContactNote
+  description: Get a contact note
+  category: Notes
+  source_operation: openapi/apex27-crm-api-openapi.yml#getContactNote
+- name: updateContactNote
+  description: Update a contact note
+  category: Notes
+  source_operation: openapi/apex27-crm-api-openapi.yml#updateContactNote
+- name: deleteContactNote
+  description: Delete a contact note
+  category: Notes
+  source_operation: openapi/apex27-crm-api-openapi.yml#deleteContactNote
+- name: listContactReferrals
+  description: Get many referrals for a contact
+  category: Contact Referrals
+  source_operation: openapi/apex27-crm-api-openapi.yml#listContactReferrals
+- name: createContactReferral
+  description: Create a referral for a contact
+  category: Contact Referrals
+  source_operation: openapi/apex27-crm-api-openapi.yml#createContactReferral
+- name: updateContactReferral
+  description: Update a contact referral
+  category: Contact Referrals
+  source_operation: openapi/apex27-crm-api-openapi.yml#updateContactReferral
+- name: deleteContactReferral
+  description: Delete a contact referral
+  category: Contact Referrals
+  source_operation: openapi/apex27-crm-api-openapi.yml#deleteContactReferral
+- name: listContactOrders
+  description: Get many contact orders
+  category: Contact Orders
+  source_operation: openapi/apex27-crm-api-openapi.yml#listContactOrders
+- name: getContactOrder
+  description: Get a contact order
+  category: Contact Orders
+  source_operation: openapi/apex27-crm-api-openapi.yml#getContactOrder
+- name: updateContactOrder
+  description: Update a contact order
+  category: Contact Orders
+  source_operation: openapi/apex27-crm-api-openapi.yml#updateContactOrder
+- name: deleteContactOrder
+  description: Delete a contact order
+  category: Contact Orders
+  source_operation: openapi/apex27-crm-api-openapi.yml#deleteContactOrder
+- name: listListings
+  description: Get many listings
+  category: Listings
+  source_operation: openapi/apex27-crm-api-openapi.yml#listListings
+- name: createListing
+  description: Create a listing
+  category: Listings
+  source_operation: openapi/apex27-crm-api-openapi.yml#createListing
+- name: getListing
+  description: Get a listing
+  category: Listings
+  source_operation: openapi/apex27-crm-api-openapi.yml#getListing
+- name: replaceListing
+  description: Replace a listing in full
+  category: Listings
+  source_operation: openapi/apex27-crm-api-openapi.yml#replaceListing
+- name: patchListing
+  description: Partially update a listing
+  category: Listings
+  source_operation: openapi/apex27-crm-api-openapi.yml#patchListing
+- name: deleteListing
+  description: Delete a listing
+  category: Listings
+  source_operation: openapi/apex27-crm-api-openapi.yml#deleteListing
+- name: listListingNotes
+  description: Get many notes for a listing
+  category: Notes
+  source_operation: openapi/apex27-crm-api-openapi.yml#listListingNotes
+- name: createListingNote
+  description: Create a note on a listing
+  category: Notes
+  source_operation: openapi/apex27-crm-api-openapi.yml#createListingNote
+- name: getListingNote
+  description: Get a listing note
+  category: Notes
+  source_operation: openapi/apex27-crm-api-openapi.yml#getListingNote
+- name: updateListingNote
+  description: Update a listing note
+  category: Notes
+  source_operation: openapi/apex27-crm-api-openapi.yml#updateListingNote
+- name: deleteListingNote
+  description: Delete a listing note
+  category: Notes
+  source_operation: openapi/apex27-crm-api-openapi.yml#deleteListingNote
+- name: listListingMedia
+  description: Get media for a listing
+  category: Listing Media
+  source_operation: openapi/apex27-crm-api-openapi.yml#listListingMedia
+- name: addListingMedia
+  description: Add media to a listing by URL
+  category: Listing Media
+  source_operation: openapi/apex27-crm-api-openapi.yml#addListingMedia
+- name: listListingRooms
+  description: Get rooms for a listing
+  category: Listing Rooms
+  source_operation: openapi/apex27-crm-api-openapi.yml#listListingRooms
+- name: createListingRoom
+  description: Create a room on a listing
+  category: Listing Rooms
+  source_operation: openapi/apex27-crm-api-openapi.yml#createListingRoom
+- name: getListingRoom
+  description: Get a listing room
+  category: Listing Rooms
+  source_operation: openapi/apex27-crm-api-openapi.yml#getListingRoom
+- name: updateListingRoom
+  description: Update a listing room
+  category: Listing Rooms
+  source_operation: openapi/apex27-crm-api-openapi.yml#updateListingRoom
+- name: deleteListingRoom
+  description: Delete a listing room
+  category: Listing Rooms
+  source_operation: openapi/apex27-crm-api-openapi.yml#deleteListingRoom
+- name: listListingLinks
+  description: Get links for a listing
+  category: Listing Links
+  source_operation: openapi/apex27-crm-api-openapi.yml#listListingLinks
+- name: createListingLink
+  description: Add a link to a listing
+  category: Listing Links
+  source_operation: openapi/apex27-crm-api-openapi.yml#createListingLink
+- name: deleteListingMediaOrLink
+  description: Delete a listing media file or a listing link
+  category: Listing Media
+  source_operation: openapi/apex27-crm-api-openapi.yml#deleteListingMediaOrLink
+- name: listOffers
+  description: Get all offers across listings
+  category: Offers
+  source_operation: openapi/apex27-crm-api-openapi.yml#listOffers
+- name: listListingOffers
+  description: Get offers for a listing
+  category: Offers
+  source_operation: openapi/apex27-crm-api-openapi.yml#listListingOffers
+- name: createListingOffer
+  description: Create an offer on a listing
+  category: Offers
+  source_operation: openapi/apex27-crm-api-openapi.yml#createListingOffer
+- name: getListingOffer
+  description: Get an offer
+  category: Offers
+  source_operation: openapi/apex27-crm-api-openapi.yml#getListingOffer
+- name: updateListingOffer
+  description: Update an offer
+  category: Offers
+  source_operation: openapi/apex27-crm-api-openapi.yml#updateListingOffer
+- name: deleteListingOffer
+  description: Delete an offer
+  category: Offers
+  source_operation: openapi/apex27-crm-api-openapi.yml#deleteListingOffer
+- name: listValuations
+  description: Get all valuations
+  category: Valuations
+  source_operation: openapi/apex27-crm-api-openapi.yml#listValuations
+- name: listListingValuations
+  description: Get valuations for a listing
+  category: Valuations
+  source_operation: openapi/apex27-crm-api-openapi.yml#listListingValuations
+- name: createListingValuation
+  description: Create a valuation on a listing
+  category: Valuations
+  source_operation: openapi/apex27-crm-api-openapi.yml#createListingValuation
+- name: getListingValuation
+  description: Get a valuation
+  category: Valuations
+  source_operation: openapi/apex27-crm-api-openapi.yml#getListingValuation
+- name: updateListingValuation
+  description: Update a valuation
+  category: Valuations
+  source_operation: openapi/apex27-crm-api-openapi.yml#updateListingValuation
+- name: deleteListingValuation
+  description: Delete a valuation
+  category: Valuations
+  source_operation: openapi/apex27-crm-api-openapi.yml#deleteListingValuation
+- name: listViewings
+  description: Get all viewings
+  category: Viewings
+  source_operation: openapi/apex27-crm-api-openapi.yml#listViewings
+- name: listListingViewings
+  description: Get viewings for a listing
+  category: Viewings
+  source_operation: openapi/apex27-crm-api-openapi.yml#listListingViewings
+- name: createListingViewing
+  description: Create a viewing on a listing
+  category: Viewings
+  source_operation: openapi/apex27-crm-api-openapi.yml#createListingViewing
+- name: getListingViewing
+  description: Get a viewing
+  category: Viewings
+  source_operation: openapi/apex27-crm-api-openapi.yml#getListingViewing
+- name: updateListingViewing
+  description: Update a viewing
+  category: Viewings
+  source_operation: openapi/apex27-crm-api-openapi.yml#updateListingViewing
+- name: deleteListingViewing
+  description: Delete a viewing
+  category: Viewings
+  source_operation: openapi/apex27-crm-api-openapi.yml#deleteListingViewing
+- name: listInspections
+  description: Get all inspections
+  category: Inspections
+  source_operation: openapi/apex27-crm-api-openapi.yml#listInspections
+- name: listListingInspections
+  description: Get inspections for a listing
+  category: Inspections
+  source_operation: openapi/apex27-crm-api-openapi.yml#listListingInspections
+- name: createListingInspection
+  description: Create an inspection on a listing
+  category: Inspections
+  source_operation: openapi/apex27-crm-api-openapi.yml#createListingInspection
+- name: getListingInspection
+  description: Get an inspection
+  category: Inspections
+  source_operation: openapi/apex27-crm-api-openapi.yml#getListingInspection
+- name: updateListingInspection
+  description: Update an inspection
+  category: Inspections
+  source_operation: openapi/apex27-crm-api-openapi.yml#updateListingInspection
+- name: deleteListingInspection
+  description: Delete an inspection
+  category: Inspections
+  source_operation: openapi/apex27-crm-api-openapi.yml#deleteListingInspection
+- name: listListingIssues
+  description: Get issues for a listing
+  category: Listing Issues
+  source_operation: openapi/apex27-crm-api-openapi.yml#listListingIssues
+- name: createListingIssue
+  description: Create an issue on a listing
+  category: Listing Issues
+  source_operation: openapi/apex27-crm-api-openapi.yml#createListingIssue
+- name: getListingIssue
+  description: Get an issue
+  category: Listing Issues
+  source_operation: openapi/apex27-crm-api-openapi.yml#getListingIssue
+- name: updateListingIssue
+  description: Update an issue
+  category: Listing Issues
+  source_operation: openapi/apex27-crm-api-openapi.yml#updateListingIssue
+- name: deleteListingIssue
+  description: Delete an issue
+  category: Listing Issues
+  source_operation: openapi/apex27-crm-api-openapi.yml#deleteListingIssue
+- name: listListingKeys
+  description: Get keys for a listing
+  category: Listing Keys
+  source_operation: openapi/apex27-crm-api-openapi.yml#listListingKeys
+- name: createListingKey
+  description: Create a key for a listing
+  category: Listing Keys
+  source_operation: openapi/apex27-crm-api-openapi.yml#createListingKey
+- name: getListingKey
+  description: Get a listing key
+  category: Listing Keys
+  source_operation: openapi/apex27-crm-api-openapi.yml#getListingKey
+- name: updateListingKey
+  description: Update a listing key
+  category: Listing Keys
+  source_operation: openapi/apex27-crm-api-openapi.yml#updateListingKey
+- name: deleteListingKey
+  description: Delete a listing key
+  category: Listing Keys
+  source_operation: openapi/apex27-crm-api-openapi.yml#deleteListingKey
+- name: checkOutListingKey
+  description: Check out a listing key
+  category: Listing Keys
+  source_operation: openapi/apex27-crm-api-openapi.yml#checkOutListingKey
+- name: checkInListingKey
+  description: Check in a listing key
+  category: Listing Keys
+  source_operation: openapi/apex27-crm-api-openapi.yml#checkInListingKey
+- name: listListingOnboardingChecks
+  description: Get onboarding checks for a listing
+  category: Onboarding Checks
+  source_operation: openapi/apex27-crm-api-openapi.yml#listListingOnboardingChecks
+- name: getListingOnboardingCheck
+  description: Get an onboarding check
+  category: Onboarding Checks
+  source_operation: openapi/apex27-crm-api-openapi.yml#getListingOnboardingCheck
+- name: updateListingOnboardingCheck
+  description: Update an onboarding check
+  category: Onboarding Checks
+  source_operation: openapi/apex27-crm-api-openapi.yml#updateListingOnboardingCheck
+- name: listLeads
+  description: Get many leads
+  category: Leads
+  source_operation: openapi/apex27-crm-api-openapi.yml#listLeads
+- name: createLead
+  description: Create a lead
+  category: Leads
+  source_operation: openapi/apex27-crm-api-openapi.yml#createLead
+- name: getLead
+  description: Get a lead
+  category: Leads
+  source_operation: openapi/apex27-crm-api-openapi.yml#getLead
+- name: updateLead
+  description: Update a lead
+  category: Leads
+  source_operation: openapi/apex27-crm-api-openapi.yml#updateLead
+- name: deleteLead
+  description: Delete a lead
+  category: Leads
+  source_operation: openapi/apex27-crm-api-openapi.yml#deleteLead
+- name: listTasks
+  description: Get many tasks
+  category: Tasks
+  source_operation: openapi/apex27-crm-api-openapi.yml#listTasks
+- name: createTask
+  description: Create a task
+  category: Tasks
+  source_operation: openapi/apex27-crm-api-openapi.yml#createTask
+- name: getTask
+  description: Get a task
+  category: Tasks
+  source_operation: openapi/apex27-crm-api-openapi.yml#getTask
+- name: updateTask
+  description: Update a task
+  category: Tasks
+  source_operation: openapi/apex27-crm-api-openapi.yml#updateTask
+- name: deleteTask
+  description: Delete a task
+  category: Tasks
+  source_operation: openapi/apex27-crm-api-openapi.yml#deleteTask
+- name: listWebhooks
+  description: Get many webhook subscriptions
+  category: Webhooks
+  source_operation: openapi/apex27-crm-api-openapi.yml#listWebhooks
+- name: createWebhook
+  description: Create a webhook subscription
+  category: Webhooks
+  source_operation: openapi/apex27-crm-api-openapi.yml#createWebhook
+- name: getWebhook
+  description: Get a webhook subscription
+  category: Webhooks
+  source_operation: openapi/apex27-crm-api-openapi.yml#getWebhook
+- name: updateWebhook
+  description: Update a webhook subscription
+  category: Webhooks
+  source_operation: openapi/apex27-crm-api-openapi.yml#updateWebhook
+- name: deleteWebhook
+  description: Delete a webhook subscription
+  category: Webhooks
+  source_operation: openapi/apex27-crm-api-openapi.yml#deleteWebhook
+- name: listBranches
+  description: Get many branches
+  category: Branches
+  source_operation: openapi/apex27-crm-api-openapi.yml#listBranches
+- name: listUsers
+  description: Get many users
+  category: Users
+  source_operation: openapi/apex27-crm-api-openapi.yml#listUsers
+- name: getUser
+  description: Get a user
+  category: Users
+  source_operation: openapi/apex27-crm-api-openapi.yml#getUser
+- name: listTenancies
+  description: Get many tenancies
+  category: Tenancies
+  source_operation: openapi/apex27-crm-api-openapi.yml#listTenancies
+- name: getTenancy
+  description: Get a tenancy
+  category: Tenancies
+  source_operation: openapi/apex27-crm-api-openapi.yml#getTenancy
+- name: patchTenancy
+  description: Partially update a tenancy
+  category: Tenancies
+  source_operation: openapi/apex27-crm-api-openapi.yml#patchTenancy
+- name: listCompletions
+  description: Get many completions
+  category: Completions
+  source_operation: openapi/apex27-crm-api-openapi.yml#listCompletions
+- name: getCompletion
+  description: Get a completion
+  category: Completions
+  source_operation: openapi/apex27-crm-api-openapi.yml#getCompletion
+- name: listSearchRegions
+  description: Get many search regions
+  category: Search Regions
+  source_operation: openapi/apex27-crm-api-openapi.yml#listSearchRegions
+- name: getSearchRegion
+  description: Get a search region
+  category: Search Regions
+  source_operation: openapi/apex27-crm-api-openapi.yml#getSearchRegion
+- name: listListingSearches
+  description: Get many saved listing searches
+  category: Listing Searches
+  source_operation: openapi/apex27-crm-api-openapi.yml#listListingSearches
+- name: createListingSearch
+  description: Create a saved listing search
+  category: Listing Searches
+  source_operation: openapi/apex27-crm-api-openapi.yml#createListingSearch
+- name: updateListingSearch
+  description: Update a saved listing search
+  category: Listing Searches
+  source_operation: openapi/apex27-crm-api-openapi.yml#updateListingSearch
+- name: deleteListingSearch
+  description: Delete a saved listing search
+  category: Listing Searches
+  source_operation: openapi/apex27-crm-api-openapi.yml#deleteListingSearch
+- name: createDocument
+  description: Add a document against a listing or contact
+  category: Documents
+  source_operation: openapi/apex27-crm-api-openapi.yml#createDocument
+- name: createNotification
+  description: Create an in-app notification
+  category: Notifications
+  source_operation: openapi/apex27-crm-api-openapi.yml#createNotification
+- name: authenticateClientPortalContact
+  description: Authenticate a client-portal contact
+  category: Client Portal
+  source_operation: openapi/apex27-crm-api-openapi.yml#authenticateClientPortalContact
+- name: getClientPortalLogInUrl
+  description: Get a client-portal log-in URL for a contact
+  category: Client Portal
+  source_operation: openapi/apex27-crm-api-openapi.yml#getClientPortalLogInUrl
+- name: getClientPortalSignInUrl
+  description: Get an auto sign-in URL for a client-portal contact
+  category: Client Portal
+  source_operation: openapi/apex27-crm-api-openapi.yml#getClientPortalSignInUrl
+- name: getValuationAvailability
+  description: Get valuation appointment availability
+  category: Availability
+  source_operation: openapi/apex27-crm-api-openapi.yml#getValuationAvailability
+- name: getViewingAvailability
+  description: Get viewing appointment availability
+  category: Availability
+  source_operation: openapi/apex27-crm-api-openapi.yml#getViewingAvailability
+- name: globalSearch
+  description: Run a global search across listings, contacts, issues and tenancies
+  category: Global Search
+  source_operation: openapi/apex27-crm-api-openapi.yml#globalSearch
+- name: getListings
+  description: Search listings
+  category: Listings
+  source_operation: openapi/apex27-portal-api-openapi.yml#getListings
+- name: getListing
+  description: Get a listing
+  category: Listings
+  source_operation: openapi/apex27-portal-api-openapi.yml#getListing
+- name: getSearchOptions
+  description: Get search options
+  category: Listings
+  source_operation: openapi/apex27-portal-api-openapi.yml#getSearchOptions
+- name: getStatistics
+  description: Get portal statistics
+  category: Statistics
+  source_operation: openapi/apex27-portal-api-openapi.yml#getStatistics
+- name: contactAgent
+  description: Send an enquiry to the agent
+  category: Enquiries
+  source_operation: openapi/apex27-portal-api-openapi.yml#contactAgent
+- name: requestValuation
+  description: Request a valuation
+  category: Enquiries
+  source_operation: openapi/apex27-portal-api-openapi.yml#requestValuation
+- name: addFavourite
+  description: Add a listing to a contact favourites
+  category: Favourites
+  source_operation: openapi/apex27-portal-api-openapi.yml#addFavourite
+- name: removeFavourite
+  description: Remove a listing from a contact favourites
+  category: Favourites
+  source_operation: openapi/apex27-portal-api-openapi.yml#removeFavourite

@@ -1,0 +1,3989 @@
+# generated: 2026-07-26
+# method: derived
+# source: https://www.npmjs.com/package/n8n-nodes-apex27crm (v1.0.4, dist/nodes/Apex27Crm/Apex27Crm.node.js)
+openapi: 3.1.0
+info:
+  title: Apex27 CRM API
+  version: 1.0.4
+  summary: REST interface over the Apex27 estate agency CRM (UK sales, lettings and commercial).
+  description: 'API Evangelist DERIVED description of the Apex27 CRM API.
+
+
+    Apex27 publishes no OpenAPI, Swagger, Postman collection or reference documentation. The documentation
+    URL declared inside Apex27''s own npm credential (https://docs.apex27.co.uk) returned HTTP 404 on
+    2026-07-26. This document was derived mechanically from Apex27''s OWN published n8n community node
+    — npm n8n-nodes-apex27crm@1.0.4, publisher "james_apex27" — which contains the complete request map
+    (paths, HTTP methods, path parameters, query filters, auth header, both environment base URLs and
+    the pagination bounds).
+
+
+    It is NOT a provider-published contract. Response schemas are intentionally left open (`type: object`)
+    because no response shape is published anywhere; only the 401 envelope is recorded verbatim from a
+    live probe of https://api.apex27.co.uk. Authentication is an `x-api-key` request header issued to
+    paying customers inside the CRM admin panel — there is no self-serve developer signup and no sandbox.'
+  contact:
+    name: Apex27
+    url: https://apex27.co.uk/contact-apex27
+  x-apievangelist-provenance:
+    method: derived
+    generated: '2026-07-26'
+    provider_published: false
+    source: https://www.npmjs.com/package/n8n-nodes-apex27crm (v1.0.4, dist/nodes/Apex27Crm/Apex27Crm.node.js)
+    source_publisher: james_apex27 (Apex27)
+    evidence:
+    - kind: npm-package
+      url: https://registry.npmjs.org/n8n-nodes-apex27crm
+      note: v1.0.4 — dist/nodes/Apex27Crm/Apex27Crm.node.js holds every method+URL pair reproduced here.
+    - kind: live-probe
+      url: https://api.apex27.co.uk/
+      status: 401
+      note: Body {"success":false,"message":"Unauthorised.","errors":[]} — the 401 envelope recorded in
+        components.schemas.Error.
+    - kind: live-probe
+      url: https://api.apex27.co.uk/branches
+      status: 401
+    - kind: live-probe
+      url: https://api.apex27.co.uk/listings
+      status: 401
+    - kind: live-probe
+      url: https://api.apex27.co.uk/webhooks
+      status: 401
+    - kind: live-probe
+      url: https://api.apex27.co.uk/properties
+      status: 404
+      note: Confirms the 401s are real routes rather than a blanket auth wall.
+    - kind: dead-link
+      url: https://docs.apex27.co.uk
+      status: 404
+      note: documentationUrl declared inside Apex27CrmApi.credentials.js.
+servers:
+- url: https://api.apex27.co.uk
+  description: Production
+- url: https://dev-api.apex27.co.uk
+  description: Development (key-gated, not an open sandbox)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Contacts
+  description: Applicants, vendors, landlords, tenants and buyers held in the CRM.
+- name: Call Logs
+  description: Telephone activity recorded against a contact.
+- name: Notes
+  description: Free-text notes attached to a contact or a listing.
+- name: Contact Referrals
+  description: Referrals raised against a contact (conveyancing, mortgage, survey).
+- name: Contact Orders
+  description: Orders placed against a contact.
+- name: Listings
+  description: Sales, lettings, land and commercial property records.
+- name: Listing Media
+  description: Images, EPCs, floorplans, brochures and videos on a listing.
+- name: Listing Rooms
+  description: Room-by-room detail on a listing.
+- name: Listing Links
+  description: Virtual tours, videos, EPC reports and brochure links on a listing.
+- name: Offers
+  description: Offers made against listings.
+- name: Valuations
+  description: Market appraisals and valuation appointments.
+- name: Viewings
+  description: Viewing appointments.
+- name: Inspections
+  description: Property inspections (lettings management).
+- name: Listing Issues
+  description: Maintenance issues raised against a listing.
+- name: Listing Keys
+  description: Key sets held for a listing, including check-out and check-in.
+- name: Onboarding Checks
+  description: Compliance and onboarding checklists on a listing.
+- name: Leads
+  description: Inbound leads and their pipeline status.
+- name: Tasks
+  description: Work items assigned to users.
+- name: Webhooks
+  description: Webhook subscription management.
+- name: Branches
+  description: Agency branches within the tenant.
+- name: Users
+  description: CRM users within the tenant.
+- name: Tenancies
+  description: Tenancy agreements and their lifecycle.
+- name: Completions
+  description: Sales completions and progression.
+- name: Search Regions
+  description: Named geographic search regions.
+- name: Listing Searches
+  description: Saved applicant listing searches used for matching and alerts.
+- name: Documents
+  description: Documents attached to listings or contacts.
+- name: Notifications
+  description: In-app notifications to users, branches, listings or contacts.
+- name: Client Portal
+  description: Client-portal authentication and sign-in links.
+- name: Availability
+  description: Appointment availability for valuations and viewings.
+- name: Global Search
+  description: Cross-entity search.
+paths:
+  /contacts:
+    get:
+      operationId: listContacts
+      summary: Get many contacts
+      description: Get many contacts. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Contacts
+      parameters:
+      - name: uuid
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: externalId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: e164
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: minDtsUpdated
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Only contacts updated at or after this timestamp.
+      - name: includeArchived
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: single
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - &id002
+        name: page
+        in: query
+        required: false
+        description: Page number (minimum 1).
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - &id003
+        name: pageSize
+        in: query
+        required: false
+        description: Records per page (minimum 25, maximum 250).
+        schema:
+          type: integer
+          minimum: 25
+          maximum: 250
+          default: 25
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createContact
+      summary: Create a contact
+      description: Create a contact. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Contacts
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              required:
+              - firstName
+              - lastName
+              properties:
+                firstName: {}
+                lastName: {}
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /contacts/{contactId}:
+    get:
+      operationId: getContact
+      summary: Get a contact
+      description: Get a contact. Derived from the request the Apex27-published n8n node issues for this
+        resource and operation.
+      tags:
+      - Contacts
+      parameters:
+      - &id001
+        name: contactId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Apex27 contact identifier.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: replaceContact
+      summary: Replace a contact in full
+      description: Replace a contact in full. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Contacts
+      parameters:
+      - *id001
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: patchContact
+      summary: Partially update a contact
+      description: Partially update a contact. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Contacts
+      parameters:
+      - *id001
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteContact
+      summary: Delete a contact
+      description: Delete a contact. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Contacts
+      parameters:
+      - *id001
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /contacts/{contactId}/call-logs:
+    get:
+      operationId: listContactCallLogs
+      summary: Get many call logs for a contact
+      description: Get many call logs for a contact. Derived from the request the Apex27-published n8n
+        node issues for this resource and operation.
+      tags:
+      - Call Logs
+      parameters:
+      - *id001
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createContactCallLog
+      summary: Create a call log for a contact
+      description: Create a call log for a contact. Derived from the request the Apex27-published n8n
+        node issues for this resource and operation.
+      tags:
+      - Call Logs
+      parameters:
+      - *id001
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /call-logs:
+    post:
+      operationId: createCallLog
+      summary: Create a call log by E.164 number or email
+      description: Create a call log by E.164 number or email. Derived from the request the Apex27-published
+        n8n node issues for this resource and operation.
+      tags:
+      - Call Logs
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /contacts/{contactId}/call-logs/{callLogId}:
+    put:
+      operationId: updateContactCallLog
+      summary: Update a call log
+      description: Update a call log. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Call Logs
+      parameters:
+      - *id001
+      - name: callLogId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteContactCallLog
+      summary: Delete a call log
+      description: Delete a call log. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Call Logs
+      parameters:
+      - *id001
+      - name: callLogId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /contacts/{contactId}/notes:
+    get:
+      operationId: listContactNotes
+      summary: Get many notes for a contact
+      description: Get many notes for a contact. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Notes
+      parameters:
+      - *id001
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createContactNote
+      summary: Create a note on a contact
+      description: Create a note on a contact. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Notes
+      parameters:
+      - *id001
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              required:
+              - content
+              properties:
+                content: {}
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /contacts/{contactId}/notes/{noteId}:
+    get:
+      operationId: getContactNote
+      summary: Get a contact note
+      description: Get a contact note. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Notes
+      parameters:
+      - *id001
+      - name: noteId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateContactNote
+      summary: Update a contact note
+      description: Update a contact note. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Notes
+      parameters:
+      - *id001
+      - name: noteId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteContactNote
+      summary: Delete a contact note
+      description: Delete a contact note. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Notes
+      parameters:
+      - *id001
+      - name: noteId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /contacts/{contactId}/referrals:
+    get:
+      operationId: listContactReferrals
+      summary: Get many referrals for a contact
+      description: Get many referrals for a contact. Derived from the request the Apex27-published n8n
+        node issues for this resource and operation.
+      tags:
+      - Contact Referrals
+      parameters:
+      - *id001
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createContactReferral
+      summary: Create a referral for a contact
+      description: Create a referral for a contact. Derived from the request the Apex27-published n8n
+        node issues for this resource and operation.
+      tags:
+      - Contact Referrals
+      parameters:
+      - *id001
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /contacts/{contactId}/referrals/{contactReferralId}:
+    put:
+      operationId: updateContactReferral
+      summary: Update a contact referral
+      description: Update a contact referral. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Contact Referrals
+      parameters:
+      - *id001
+      - name: contactReferralId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteContactReferral
+      summary: Delete a contact referral
+      description: Delete a contact referral. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Contact Referrals
+      parameters:
+      - *id001
+      - name: contactReferralId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /contact-orders:
+    get:
+      operationId: listContactOrders
+      summary: Get many contact orders
+      description: Get many contact orders. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Contact Orders
+      parameters:
+      - name: reference
+        in: query
+        required: false
+        schema:
+          type: string
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /contact-orders/{orderId}:
+    get:
+      operationId: getContactOrder
+      summary: Get a contact order
+      description: Get a contact order. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Contact Orders
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateContactOrder
+      summary: Update a contact order
+      description: Update a contact order. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Contact Orders
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteContactOrder
+      summary: Delete a contact order
+      description: Delete a contact order. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Contact Orders
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings:
+    get:
+      operationId: listListings
+      summary: Get many listings
+      description: Get many listings. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Listings
+      parameters:
+      - name: branchId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: contactId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: uuid
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: externalId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: transactionType
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: &id008
+          - Sale
+          - Rent
+          - Land
+          - Commercial Sale
+          - Commercial Rent
+      - name: minBeds
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: minBaths
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: minPrice
+        in: query
+        required: false
+        schema:
+          type: number
+      - name: maxPrice
+        in: query
+        required: false
+        schema:
+          type: number
+      - name: city
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: websiteStatus
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: mainSearchRegionId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: archived
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: activeTenancies
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: minDtsCreatedUpdated
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: minDtsUpdated
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: includeContacts
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: includeImages
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: includeOffers
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: includeValuations
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: includeRooms
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createListing
+      summary: Create a listing
+      description: Create a listing. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Listings
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              required:
+              - branchId
+              - contactId
+              properties:
+                branchId: {}
+                contactId: {}
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}:
+    get:
+      operationId: getListing
+      summary: Get a listing
+      description: Get a listing. Derived from the request the Apex27-published n8n node issues for this
+        resource and operation.
+      tags:
+      - Listings
+      parameters:
+      - &id004
+        name: listingId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Apex27 listing identifier.
+      - name: includeContacts
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: includeImages
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: includeOffers
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: includeValuations
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: includeRooms
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: replaceListing
+      summary: Replace a listing in full
+      description: Replace a listing in full. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Listings
+      parameters:
+      - *id004
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: patchListing
+      summary: Partially update a listing
+      description: Partially update a listing. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Listings
+      parameters:
+      - *id004
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteListing
+      summary: Delete a listing
+      description: Delete a listing. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Listings
+      parameters:
+      - *id004
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/notes:
+    get:
+      operationId: listListingNotes
+      summary: Get many notes for a listing
+      description: Get many notes for a listing. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Notes
+      parameters:
+      - *id004
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createListingNote
+      summary: Create a note on a listing
+      description: Create a note on a listing. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Notes
+      parameters:
+      - *id004
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              required:
+              - content
+              properties:
+                content: {}
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/notes/{noteId}:
+    get:
+      operationId: getListingNote
+      summary: Get a listing note
+      description: Get a listing note. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Notes
+      parameters:
+      - *id004
+      - name: noteId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateListingNote
+      summary: Update a listing note
+      description: Update a listing note. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Notes
+      parameters:
+      - *id004
+      - name: noteId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteListingNote
+      summary: Delete a listing note
+      description: Delete a listing note. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Notes
+      parameters:
+      - *id004
+      - name: noteId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/{mediaType}:
+    get:
+      operationId: listListingMedia
+      summary: Get media for a listing
+      description: Get media for a listing. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Listing Media
+      parameters:
+      - *id004
+      - &id005
+        name: mediaType
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - images
+          - epcs
+          - floorplans
+          - brochures
+          - videos
+        description: Media collection on the listing.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addListingMedia
+      summary: Add media to a listing by URL
+      description: Add media to a listing by URL. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Listing Media
+      parameters:
+      - *id004
+      - *id005
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              required:
+              - url
+              properties:
+                url: {}
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/rooms:
+    get:
+      operationId: listListingRooms
+      summary: Get rooms for a listing
+      description: Get rooms for a listing. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Listing Rooms
+      parameters:
+      - *id004
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createListingRoom
+      summary: Create a room on a listing
+      description: Create a room on a listing. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Listing Rooms
+      parameters:
+      - *id004
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/rooms/{roomId}:
+    get:
+      operationId: getListingRoom
+      summary: Get a listing room
+      description: Get a listing room. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Listing Rooms
+      parameters:
+      - *id004
+      - name: roomId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateListingRoom
+      summary: Update a listing room
+      description: Update a listing room. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Listing Rooms
+      parameters:
+      - *id004
+      - name: roomId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteListingRoom
+      summary: Delete a listing room
+      description: Delete a listing room. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Listing Rooms
+      parameters:
+      - *id004
+      - name: roomId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/links/{linkType}:
+    get:
+      operationId: listListingLinks
+      summary: Get links for a listing
+      description: Get links for a listing. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Listing Links
+      parameters:
+      - *id004
+      - &id006
+        name: linkType
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - virtual-tours
+          - videos
+          - epc-reports
+          - brochures
+        description: Link collection on the listing.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createListingLink
+      summary: Add a link to a listing
+      description: Add a link to a listing. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Listing Links
+      parameters:
+      - *id004
+      - *id006
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              required:
+              - name
+              - url
+              properties:
+                name: {}
+                url: {}
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/{collection}/{itemId}:
+    delete:
+      operationId: deleteListingMediaOrLink
+      summary: Delete a listing media file or a listing link
+      description: Delete a listing media file or a listing link. Derived from the request the Apex27-published
+        n8n node issues for this resource and operation.
+      tags:
+      - Listing Media
+      parameters:
+      - *id004
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - images
+          - epcs
+          - floorplans
+          - brochures
+          - videos
+          - virtual-tours
+          - epc-reports
+        description: Media or link collection on the listing. Media values (images, epcs, floorplans,
+          brochures, videos) delete a media file; link values (virtual-tours, videos, epc-reports, brochures)
+          delete a link. The two sets overlap on videos and brochures.
+      - name: itemId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Identifier of the item being deleted. Apex27's own client calls this fileId for media
+          and linkId for links.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /offers:
+    get:
+      operationId: listOffers
+      summary: Get all offers across listings
+      description: Get all offers across listings. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Offers
+      parameters: &id007
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/offers:
+    get:
+      operationId: listListingOffers
+      summary: Get offers for a listing
+      description: Get offers for a listing. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Offers
+      parameters:
+      - *id004
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createListingOffer
+      summary: Create an offer on a listing
+      description: Create an offer on a listing. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Offers
+      parameters:
+      - *id004
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/offers/{offerId}:
+    get:
+      operationId: getListingOffer
+      summary: Get an offer
+      description: Get an offer. Derived from the request the Apex27-published n8n node issues for this
+        resource and operation.
+      tags:
+      - Offers
+      parameters:
+      - *id004
+      - name: offerId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateListingOffer
+      summary: Update an offer
+      description: Update an offer. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Offers
+      parameters:
+      - *id004
+      - name: offerId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteListingOffer
+      summary: Delete an offer
+      description: Delete an offer. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Offers
+      parameters:
+      - *id004
+      - name: offerId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /valuations:
+    get:
+      operationId: listValuations
+      summary: Get all valuations
+      description: Get all valuations. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Valuations
+      parameters: *id007
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/valuations:
+    get:
+      operationId: listListingValuations
+      summary: Get valuations for a listing
+      description: Get valuations for a listing. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Valuations
+      parameters:
+      - *id004
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createListingValuation
+      summary: Create a valuation on a listing
+      description: Create a valuation on a listing. Derived from the request the Apex27-published n8n
+        node issues for this resource and operation.
+      tags:
+      - Valuations
+      parameters:
+      - *id004
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/valuations/{valuationId}:
+    get:
+      operationId: getListingValuation
+      summary: Get a valuation
+      description: Get a valuation. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Valuations
+      parameters:
+      - *id004
+      - name: valuationId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateListingValuation
+      summary: Update a valuation
+      description: Update a valuation. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Valuations
+      parameters:
+      - *id004
+      - name: valuationId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteListingValuation
+      summary: Delete a valuation
+      description: Delete a valuation. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Valuations
+      parameters:
+      - *id004
+      - name: valuationId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /viewings:
+    get:
+      operationId: listViewings
+      summary: Get all viewings
+      description: Get all viewings. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Viewings
+      parameters: *id007
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/viewings:
+    get:
+      operationId: listListingViewings
+      summary: Get viewings for a listing
+      description: Get viewings for a listing. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Viewings
+      parameters:
+      - *id004
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createListingViewing
+      summary: Create a viewing on a listing
+      description: Create a viewing on a listing. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Viewings
+      parameters:
+      - *id004
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/viewings/{viewingId}:
+    get:
+      operationId: getListingViewing
+      summary: Get a viewing
+      description: Get a viewing. Derived from the request the Apex27-published n8n node issues for this
+        resource and operation.
+      tags:
+      - Viewings
+      parameters:
+      - *id004
+      - name: viewingId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateListingViewing
+      summary: Update a viewing
+      description: Update a viewing. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Viewings
+      parameters:
+      - *id004
+      - name: viewingId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteListingViewing
+      summary: Delete a viewing
+      description: Delete a viewing. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Viewings
+      parameters:
+      - *id004
+      - name: viewingId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /inspections:
+    get:
+      operationId: listInspections
+      summary: Get all inspections
+      description: Get all inspections. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Inspections
+      parameters: *id007
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/inspections:
+    get:
+      operationId: listListingInspections
+      summary: Get inspections for a listing
+      description: Get inspections for a listing. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Inspections
+      parameters:
+      - *id004
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createListingInspection
+      summary: Create an inspection on a listing
+      description: Create an inspection on a listing. Derived from the request the Apex27-published n8n
+        node issues for this resource and operation.
+      tags:
+      - Inspections
+      parameters:
+      - *id004
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/inspections/{inspectionId}:
+    get:
+      operationId: getListingInspection
+      summary: Get an inspection
+      description: Get an inspection. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Inspections
+      parameters:
+      - *id004
+      - name: inspectionId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateListingInspection
+      summary: Update an inspection
+      description: Update an inspection. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Inspections
+      parameters:
+      - *id004
+      - name: inspectionId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteListingInspection
+      summary: Delete an inspection
+      description: Delete an inspection. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Inspections
+      parameters:
+      - *id004
+      - name: inspectionId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/issues:
+    get:
+      operationId: listListingIssues
+      summary: Get issues for a listing
+      description: Get issues for a listing. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Listing Issues
+      parameters:
+      - *id004
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createListingIssue
+      summary: Create an issue on a listing
+      description: Create an issue on a listing. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Listing Issues
+      parameters:
+      - *id004
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/issues/{issueId}:
+    get:
+      operationId: getListingIssue
+      summary: Get an issue
+      description: Get an issue. Derived from the request the Apex27-published n8n node issues for this
+        resource and operation.
+      tags:
+      - Listing Issues
+      parameters:
+      - *id004
+      - name: issueId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateListingIssue
+      summary: Update an issue
+      description: Update an issue. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Listing Issues
+      parameters:
+      - *id004
+      - name: issueId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteListingIssue
+      summary: Delete an issue
+      description: Delete an issue. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Listing Issues
+      parameters:
+      - *id004
+      - name: issueId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/keys:
+    get:
+      operationId: listListingKeys
+      summary: Get keys for a listing
+      description: Get keys for a listing. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Listing Keys
+      parameters:
+      - *id004
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createListingKey
+      summary: Create a key for a listing
+      description: Create a key for a listing. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Listing Keys
+      parameters:
+      - *id004
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/keys/{keyId}:
+    get:
+      operationId: getListingKey
+      summary: Get a listing key
+      description: Get a listing key. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Listing Keys
+      parameters:
+      - *id004
+      - name: keyId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateListingKey
+      summary: Update a listing key
+      description: Update a listing key. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Listing Keys
+      parameters:
+      - *id004
+      - name: keyId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteListingKey
+      summary: Delete a listing key
+      description: Delete a listing key. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Listing Keys
+      parameters:
+      - *id004
+      - name: keyId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/keys/{keyId}/check-out:
+    post:
+      operationId: checkOutListingKey
+      summary: Check out a listing key
+      description: Check out a listing key. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Listing Keys
+      parameters:
+      - *id004
+      - name: keyId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/keys/{keyId}/check-in:
+    post:
+      operationId: checkInListingKey
+      summary: Check in a listing key
+      description: Check in a listing key. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Listing Keys
+      parameters:
+      - *id004
+      - name: keyId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/onboarding-checks:
+    get:
+      operationId: listListingOnboardingChecks
+      summary: Get onboarding checks for a listing
+      description: Get onboarding checks for a listing. Derived from the request the Apex27-published
+        n8n node issues for this resource and operation.
+      tags:
+      - Onboarding Checks
+      parameters:
+      - *id004
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/onboarding-checks/{onboardingCheckId}:
+    get:
+      operationId: getListingOnboardingCheck
+      summary: Get an onboarding check
+      description: Get an onboarding check. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Onboarding Checks
+      parameters:
+      - *id004
+      - name: onboardingCheckId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateListingOnboardingCheck
+      summary: Update an onboarding check
+      description: Update an onboarding check. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Onboarding Checks
+      parameters:
+      - *id004
+      - name: onboardingCheckId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /leads:
+    get:
+      operationId: listLeads
+      summary: Get many leads
+      description: Get many leads. Derived from the request the Apex27-published n8n node issues for this
+        resource and operation.
+      tags:
+      - Leads
+      parameters:
+      - name: branchId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: contactId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: listingId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - New
+          - Approached
+          - Awaiting Action
+          - Completed
+          - Closed
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createLead
+      summary: Create a lead
+      description: Create a lead. Derived from the request the Apex27-published n8n node issues for this
+        resource and operation.
+      tags:
+      - Leads
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /leads/{leadId}:
+    get:
+      operationId: getLead
+      summary: Get a lead
+      description: Get a lead. Derived from the request the Apex27-published n8n node issues for this
+        resource and operation.
+      tags:
+      - Leads
+      parameters:
+      - name: leadId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateLead
+      summary: Update a lead
+      description: Update a lead. Derived from the request the Apex27-published n8n node issues for this
+        resource and operation.
+      tags:
+      - Leads
+      parameters:
+      - name: leadId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteLead
+      summary: Delete a lead
+      description: Delete a lead. Derived from the request the Apex27-published n8n node issues for this
+        resource and operation.
+      tags:
+      - Leads
+      parameters:
+      - name: leadId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tasks:
+    get:
+      operationId: listTasks
+      summary: Get many tasks
+      description: Get many tasks. Derived from the request the Apex27-published n8n node issues for this
+        resource and operation.
+      tags:
+      - Tasks
+      parameters:
+      - name: contactId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: listingId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: createdBy
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: assignedTo
+        in: query
+        required: false
+        schema:
+          type: integer
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createTask
+      summary: Create a task
+      description: Create a task. Derived from the request the Apex27-published n8n node issues for this
+        resource and operation.
+      tags:
+      - Tasks
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              required:
+              - description
+              properties:
+                description: {}
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tasks/{taskId}:
+    get:
+      operationId: getTask
+      summary: Get a task
+      description: Get a task. Derived from the request the Apex27-published n8n node issues for this
+        resource and operation.
+      tags:
+      - Tasks
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateTask
+      summary: Update a task
+      description: Update a task. Derived from the request the Apex27-published n8n node issues for this
+        resource and operation.
+      tags:
+      - Tasks
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteTask
+      summary: Delete a task
+      description: Delete a task. Derived from the request the Apex27-published n8n node issues for this
+        resource and operation.
+      tags:
+      - Tasks
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /webhooks:
+    get:
+      operationId: listWebhooks
+      summary: Get many webhook subscriptions
+      description: Get many webhook subscriptions. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createWebhook
+      summary: Create a webhook subscription
+      description: Create a webhook subscription. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Webhooks
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /webhooks/{webhookId}:
+    get:
+      operationId: getWebhook
+      summary: Get a webhook subscription
+      description: Get a webhook subscription. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Webhooks
+      parameters:
+      - name: webhookId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateWebhook
+      summary: Update a webhook subscription
+      description: Update a webhook subscription. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Webhooks
+      parameters:
+      - name: webhookId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteWebhook
+      summary: Delete a webhook subscription
+      description: Delete a webhook subscription. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Webhooks
+      parameters:
+      - name: webhookId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /branches:
+    get:
+      operationId: listBranches
+      summary: Get many branches
+      description: Get many branches. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Branches
+      parameters: *id007
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /users:
+    get:
+      operationId: listUsers
+      summary: Get many users
+      description: Get many users. Derived from the request the Apex27-published n8n node issues for this
+        resource and operation.
+      tags:
+      - Users
+      parameters:
+      - name: postal_code
+        in: query
+        required: false
+        schema:
+          type: string
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /users/{userId}:
+    get:
+      operationId: getUser
+      summary: Get a user
+      description: Get a user. Derived from the request the Apex27-published n8n node issues for this
+        resource and operation.
+      tags:
+      - Users
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancies:
+    get:
+      operationId: listTenancies
+      summary: Get many tenancies
+      description: Get many tenancies. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Tenancies
+      parameters:
+      - name: listingId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: branchId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: tenantId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: activeOnly
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: minDtsUpdated
+        in: query
+        required: false
+        schema:
+          type: string
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancies/{tenancyId}:
+    get:
+      operationId: getTenancy
+      summary: Get a tenancy
+      description: Get a tenancy. Derived from the request the Apex27-published n8n node issues for this
+        resource and operation.
+      tags:
+      - Tenancies
+      parameters:
+      - name: tenancyId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: patchTenancy
+      summary: Partially update a tenancy
+      description: Partially update a tenancy. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Tenancies
+      parameters:
+      - name: tenancyId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /completions:
+    get:
+      operationId: listCompletions
+      summary: Get many completions
+      description: Get many completions. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Completions
+      parameters:
+      - name: listingId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: branchId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: activeOnly
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /completions/{completionId}:
+    get:
+      operationId: getCompletion
+      summary: Get a completion
+      description: Get a completion. Derived from the request the Apex27-published n8n node issues for
+        this resource and operation.
+      tags:
+      - Completions
+      parameters:
+      - name: completionId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /search-regions:
+    get:
+      operationId: listSearchRegions
+      summary: Get many search regions
+      description: Get many search regions. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Search Regions
+      parameters: *id007
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /search-regions/{searchRegionId}:
+    get:
+      operationId: getSearchRegion
+      summary: Get a search region
+      description: Get a search region. Derived from the request the Apex27-published n8n node issues
+        for this resource and operation.
+      tags:
+      - Search Regions
+      parameters:
+      - name: searchRegionId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listing-searches:
+    get:
+      operationId: listListingSearches
+      summary: Get many saved listing searches
+      description: Get many saved listing searches. Derived from the request the Apex27-published n8n
+        node issues for this resource and operation.
+      tags:
+      - Listing Searches
+      parameters:
+      - name: contactId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: transactionType
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: *id008
+      - name: minDtsCreatedUpdated
+        in: query
+        required: false
+        schema:
+          type: string
+      - *id002
+      - *id003
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createListingSearch
+      summary: Create a saved listing search
+      description: Create a saved listing search. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Listing Searches
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listing-searches/{listingSearchId}:
+    put:
+      operationId: updateListingSearch
+      summary: Update a saved listing search
+      description: Update a saved listing search. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Listing Searches
+      parameters:
+      - name: listingSearchId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteListingSearch
+      summary: Delete a saved listing search
+      description: Delete a saved listing search. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Listing Searches
+      parameters:
+      - name: listingSearchId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /documents:
+    post:
+      operationId: createDocument
+      summary: Add a document against a listing or contact
+      description: Add a document against a listing or contact. Derived from the request the Apex27-published
+        n8n node issues for this resource and operation.
+      tags:
+      - Documents
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              required:
+              - name
+              - url
+              - linkTo
+              properties:
+                name: {}
+                url: {}
+                linkTo: {}
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /notifications:
+    post:
+      operationId: createNotification
+      summary: Create an in-app notification
+      description: Create an in-app notification. Derived from the request the Apex27-published n8n node
+        issues for this resource and operation.
+      tags:
+      - Notifications
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              required:
+              - title
+              - body
+              - target
+              properties:
+                title: {}
+                body: {}
+                target: {}
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /client-portal/authenticate:
+    post:
+      operationId: authenticateClientPortalContact
+      summary: Authenticate a client-portal contact
+      description: Authenticate a client-portal contact. Derived from the request the Apex27-published
+        n8n node issues for this resource and operation.
+      tags:
+      - Client Portal
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the
+          object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              required:
+              - email
+              - password
+              properties:
+                email: {}
+                password: {}
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /client-portal/log-in-url:
+    get:
+      operationId: getClientPortalLogInUrl
+      summary: Get a client-portal log-in URL for a contact
+      description: Get a client-portal log-in URL for a contact. Derived from the request the Apex27-published
+        n8n node issues for this resource and operation.
+      tags:
+      - Client Portal
+      parameters:
+      - name: contactId
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /client-portal/sign-in-url:
+    get:
+      operationId: getClientPortalSignInUrl
+      summary: Get an auto sign-in URL for a client-portal contact
+      description: Get an auto sign-in URL for a client-portal contact. Derived from the request the Apex27-published
+        n8n node issues for this resource and operation.
+      tags:
+      - Client Portal
+      parameters:
+      - name: contactId
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /availability/valuations:
+    get:
+      operationId: getValuationAvailability
+      summary: Get valuation appointment availability
+      description: Get valuation appointment availability. Derived from the request the Apex27-published
+        n8n node issues for this resource and operation.
+      tags:
+      - Availability
+      parameters:
+      - name: postal_code
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: listing_id
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: date_start
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: date_end
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: time_start
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: time_end
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /availability/viewings:
+    get:
+      operationId: getViewingAvailability
+      summary: Get viewing appointment availability
+      description: Get viewing appointment availability. Derived from the request the Apex27-published
+        n8n node issues for this resource and operation.
+      tags:
+      - Availability
+      parameters:
+      - name: postal_code
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: listing_id
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: date_start
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: date_end
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: time_start
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: time_end
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /global-search:
+    get:
+      operationId: globalSearch
+      summary: Run a global search across listings, contacts, issues and tenancies
+      description: Run a global search across listings, contacts, issues and tenancies. Derived from the
+        request the Apex27-published n8n node issues for this resource and operation.
+      tags:
+      - Global Search
+      parameters:
+      - name: term
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: branchId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: transactionType
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: *id008
+      - name: includeArchived
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: searchListings
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: searchContacts
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: searchIssues
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: searchTenancies
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key issued to a paying Apex27 tenant from the CRM admin panel. No self-serve issuance.
+  schemas:
+    Error:
+      type: object
+      description: Apex27 CRM API error envelope, recorded verbatim from a live 401 response.
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+      required:
+      - success
+      - message
+      examples:
+      - success: false
+        message: Unauthorised.
+        errors: []
+  responses:
+    Unauthorised:
+      description: Unauthorised. The `x-api-key` header is missing, malformed or not valid for this tenant.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            success: false
+            message: Unauthorised.
+            errors: []
+    NotFound:
+      description: The requested resource or route does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

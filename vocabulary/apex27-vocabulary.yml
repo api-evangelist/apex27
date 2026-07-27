@@ -1,0 +1,168 @@
+generated: '2026-07-26'
+method: derived
+source: npm n8n-nodes-apex27crm@1.0.4 and n8n-nodes-apex27portal@0.1.0 (enumerated option lists in Apex27's
+  own client code)
+note: Controlled vocabularies Apex27 accepts on the wire. Every value below is copied verbatim from an
+  enumerated option list in Apex27's own published client code. Note the two APIs use DIFFERENT transaction-type
+  vocabularies for the same concept — a real interoperability seam inside one vendor.
+terms:
+- term: transactionType
+  api: Apex27 CRM API
+  applies_to:
+  - listings
+  - listing-searches
+  - global-search
+  values:
+  - Sale
+  - Rent
+  - Land
+  - Commercial Sale
+  - Commercial Rent
+- term: transaction_type
+  api: Apex27 Portal API
+  applies_to:
+  - get-listings
+  - get-statistics
+  - request-valuation
+  values:
+  - sales
+  - lettings
+  - commercial_sales
+  - commercial_lettings
+  - holiday_lettings
+  - land
+  note: Six values, snake_case, and includes holiday_lettings — which the CRM vocabulary has no equivalent
+    for.
+- term: property_class
+  api: Apex27 Portal API
+  applies_to:
+  - get-listings
+  values:
+  - sale
+  - rent
+- term: mediaType
+  api: Apex27 CRM API
+  applies_to:
+  - listing media paths
+  values:
+  - images
+  - epcs
+  - floorplans
+  - brochures
+  - videos
+  note: 'Used as a path segment: /listings/{listingId}/{mediaType}.'
+- term: linkType
+  api: Apex27 CRM API
+  applies_to:
+  - listing link paths
+  values:
+  - virtual-tours
+  - videos
+  - epc-reports
+  - brochures
+  note: Used as a path segment. The create/list paths carry /links/{linkType} but the vendor client issues
+    DELETE against /listings/{listingId}/{linkType}/{linkId} — omitting /links/. Because that template
+    is identical to the media-delete template, the derived OpenAPI merges both into a single DELETE /listings/{listingId}/{collection}/{itemId}
+    operation (deleteListingMediaOrLink) rather than emit two conflicting paths.
+- term: lead status
+  api: Apex27 CRM API
+  applies_to:
+  - leads
+  values:
+  - New
+  - Approached
+  - Awaiting Action
+  - Completed
+  - Closed
+- term: sort
+  api: Apex27 Portal API
+  applies_to:
+  - get-listings
+  values:
+  - featured
+  - newest
+  - oldest
+  - highest_price
+  - lowest_price
+  - nearest
+  - newly_instructed
+- term: tenure
+  api: Apex27 Portal API
+  applies_to:
+  - request-valuation
+  values:
+  - freehold
+  - leasehold
+  - share_of_freehold
+  - commonhold
+  note: England and Wales tenure model. Scottish and Northern Irish tenure has no representation.
+- term: condition
+  api: Apex27 Portal API
+  applies_to:
+  - request-valuation
+  values:
+  - new_build
+  - good
+  - average
+  - poor
+- term: furnished
+  api: Apex27 Portal API
+  applies_to:
+  - request-valuation
+  values:
+  - furnished
+  - part_furnished
+  - unfurnished
+- term: title
+  api: Apex27 Portal API
+  applies_to:
+  - request-valuation
+  values:
+  - mr
+  - mrs
+  - miss
+  - ms
+  - dr
+  - prof
+- term: image_size
+  api: Apex27 Portal API
+  applies_to:
+  - get-listings
+  - get-listing
+  values:
+  - tiny
+  - small
+  - medium
+  - large
+  - custom
+  note: tiny 320x180, small 640x360, medium 1280x720 (default), large 2560x1440.
+- term: enquiry target
+  api: Apex27 Portal API
+  applies_to:
+  - contact
+  values:
+  - listing_id
+  - listing_reference
+  - branch_id
+  note: Client-side selector determining which identifier the enquiry body carries.
+- term: document linkTo
+  api: Apex27 CRM API
+  applies_to:
+  - documents
+  values:
+  - Listing
+  - Contact
+- term: notification target
+  api: Apex27 CRM API
+  applies_to:
+  - notifications
+  values:
+  - User
+  - Branch
+  - Main Branch
+  - Listing
+  - Contact
+external_alignment:
+  reso_data_dictionary: false
+  note: None of these vocabularies aligns to a RESO Data Dictionary enumeration. The UK has no MLS and
+    no cooperative listing standard, so the vendor vocabulary is the only vocabulary.

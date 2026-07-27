@@ -1,0 +1,41 @@
+generated: '2026-07-26'
+method: searched
+source: live probes 2026-07-26
+result: none
+note: Every /.well-known/ path was probed on both the API host and the marketing host and every one returned
+  HTTP 404. Apex27 publishes no discovery surface, no security.txt and no OAuth/OIDC metadata. This is
+  recorded as a real negative result — no WellKnown or SecurityTxt pointer is wired in apis.yml because
+  no document exists.
+hosts:
+- host: https://api.apex27.co.uk
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://apex27.co.uk
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /security.txt
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /llms-full.txt
+    status: 404

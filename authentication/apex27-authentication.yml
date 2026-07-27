@@ -1,0 +1,26 @@
+generated: '2026-07-26'
+method: derived
+source: openapi/apex27-crm-api-openapi.yml, openapi/apex27-portal-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  - query
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  description: API key issued to a paying Apex27 tenant from the CRM admin panel. No self-serve
+    issuance.
+  sources:
+  - openapi/apex27-crm-api-openapi.yml
+- name: PortalApiKey
+  type: apiKey
+  in: query
+  parameter: api_key
+  description: Portal API key from Admin Panel > Websites > [Your Website] > Integrations tab
+    > Portal API section.
+  sources:
+  - openapi/apex27-portal-api-openapi.yml

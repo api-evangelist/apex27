@@ -1,0 +1,385 @@
+generated: '2026-07-26'
+method: derived
+source: openapi/apex27-crm-api-openapi.yml (path nesting) + query-filter id fields in npm n8n-nodes-apex27crm@1.0.4
+note: 'Derived from URL hierarchy and id-reference query parameters. Apex27 publishes no object reference,
+  so field-level schemas, id formats and id prefixes are unknown; identifiers are integers in the vendor
+  client. Relationships marked inferred_from: path are structural facts of the route tree; those marked
+  inferred_from: filter come from an id filter the API accepts.'
+entities:
+- name: Contact
+  description: Applicant, vendor, landlord, tenant or buyer.
+  operations:
+  - listContacts
+  - getContact
+  - createContact
+  - replaceContact
+  - patchContact
+  - deleteContact
+- name: CallLog
+  description: Telephone activity against a contact.
+  operations:
+  - listContactCallLogs
+  - createContactCallLog
+  - createCallLog
+  - updateContactCallLog
+  - deleteContactCallLog
+- name: Note
+  description: Free-text note on a contact or a listing.
+  operations:
+  - listContactNotes
+  - listListingNotes
+  - getContactNote
+  - getListingNote
+  - createContactNote
+  - createListingNote
+- name: ContactReferral
+  description: Referral raised against a contact.
+  operations:
+  - listContactReferrals
+  - createContactReferral
+  - updateContactReferral
+  - deleteContactReferral
+- name: ContactOrder
+  description: Order placed against a contact.
+  operations:
+  - listContactOrders
+  - getContactOrder
+  - updateContactOrder
+  - deleteContactOrder
+- name: Listing
+  description: Sales, lettings, land or commercial property record.
+  operations:
+  - listListings
+  - getListing
+  - createListing
+  - replaceListing
+  - patchListing
+  - deleteListing
+- name: ListingMedia
+  description: Image, EPC, floorplan, brochure or video on a listing.
+  operations:
+  - listListingMedia
+  - addListingMedia
+  - deleteListingMediaOrLink
+- name: ListingRoom
+  description: Room-level detail on a listing.
+  operations:
+  - listListingRooms
+  - getListingRoom
+  - createListingRoom
+  - updateListingRoom
+  - deleteListingRoom
+- name: ListingLink
+  description: Virtual tour, video, EPC report or brochure link on a listing.
+  operations:
+  - listListingLinks
+  - createListingLink
+  - deleteListingMediaOrLink
+- name: Offer
+  description: Offer made against a listing.
+  operations:
+  - listOffers
+  - listListingOffers
+  - getListingOffer
+  - createListingOffer
+  - updateListingOffer
+  - deleteListingOffer
+- name: Valuation
+  description: Market appraisal / valuation appointment on a listing.
+  operations:
+  - listValuations
+  - listListingValuations
+  - getListingValuation
+  - createListingValuation
+  - updateListingValuation
+  - deleteListingValuation
+- name: Viewing
+  description: Viewing appointment on a listing.
+  operations:
+  - listViewings
+  - listListingViewings
+  - getListingViewing
+  - createListingViewing
+  - updateListingViewing
+  - deleteListingViewing
+- name: Inspection
+  description: Property inspection on a listing.
+  operations:
+  - listInspections
+  - listListingInspections
+  - getListingInspection
+  - createListingInspection
+  - updateListingInspection
+  - deleteListingInspection
+- name: ListingIssue
+  description: Maintenance issue raised against a listing.
+  operations:
+  - listListingIssues
+  - getListingIssue
+  - createListingIssue
+  - updateListingIssue
+  - deleteListingIssue
+- name: ListingKey
+  description: Key set held for a listing, with check-out/check-in.
+  operations:
+  - listListingKeys
+  - getListingKey
+  - createListingKey
+  - updateListingKey
+  - deleteListingKey
+  - checkOutListingKey
+  - checkInListingKey
+- name: OnboardingCheck
+  description: Compliance/onboarding checklist item on a listing.
+  operations:
+  - listListingOnboardingChecks
+  - getListingOnboardingCheck
+  - updateListingOnboardingCheck
+- name: Lead
+  description: Inbound lead with a pipeline status.
+  operations:
+  - listLeads
+  - getLead
+  - createLead
+  - updateLead
+  - deleteLead
+- name: Task
+  description: Work item assigned to a user.
+  operations:
+  - listTasks
+  - getTask
+  - createTask
+  - updateTask
+  - deleteTask
+- name: Webhook
+  description: Webhook subscription.
+  operations:
+  - listWebhooks
+  - getWebhook
+  - createWebhook
+  - updateWebhook
+  - deleteWebhook
+- name: Branch
+  description: Agency branch within the tenant.
+  operations:
+  - listBranches
+- name: User
+  description: CRM user within the tenant.
+  operations:
+  - listUsers
+  - getUser
+- name: Tenancy
+  description: Tenancy agreement.
+  operations:
+  - listTenancies
+  - getTenancy
+  - patchTenancy
+- name: Completion
+  description: Sale completion / progression record.
+  operations:
+  - listCompletions
+  - getCompletion
+- name: SearchRegion
+  description: Named geographic search region.
+  operations:
+  - listSearchRegions
+  - getSearchRegion
+- name: ListingSearch
+  description: Saved applicant listing search used for matching and alerts.
+  operations:
+  - listListingSearches
+  - createListingSearch
+  - updateListingSearch
+  - deleteListingSearch
+- name: Document
+  description: Document attached to a listing or contact.
+  operations:
+  - createDocument
+- name: Notification
+  description: In-app notification to a user, branch, listing or contact.
+  operations:
+  - createNotification
+relationships:
+- from: Contact
+  to: CallLog
+  type: has_many
+  via: contactId
+  inferred_from: path
+- from: Contact
+  to: Note
+  type: has_many
+  via: contactId
+  inferred_from: path
+- from: Contact
+  to: ContactReferral
+  type: has_many
+  via: contactId
+  inferred_from: path
+- from: Contact
+  to: ContactOrder
+  type: has_many
+  via: contactId
+  inferred_from: filter
+- from: Contact
+  to: Listing
+  type: has_many
+  via: contactId
+  inferred_from: filter
+- from: Contact
+  to: Lead
+  type: has_many
+  via: contactId
+  inferred_from: filter
+- from: Contact
+  to: Task
+  type: has_many
+  via: contactId
+  inferred_from: filter
+- from: Contact
+  to: ListingSearch
+  type: has_many
+  via: contactId
+  inferred_from: filter
+- from: Contact
+  to: Document
+  type: has_many
+  via: contactId
+  inferred_from: body
+- from: Listing
+  to: ListingMedia
+  type: has_many
+  via: listingId
+  inferred_from: path
+- from: Listing
+  to: ListingRoom
+  type: has_many
+  via: listingId
+  inferred_from: path
+- from: Listing
+  to: ListingLink
+  type: has_many
+  via: listingId
+  inferred_from: path
+- from: Listing
+  to: Note
+  type: has_many
+  via: listingId
+  inferred_from: path
+- from: Listing
+  to: Offer
+  type: has_many
+  via: listingId
+  inferred_from: path
+- from: Listing
+  to: Valuation
+  type: has_many
+  via: listingId
+  inferred_from: path
+- from: Listing
+  to: Viewing
+  type: has_many
+  via: listingId
+  inferred_from: path
+- from: Listing
+  to: Inspection
+  type: has_many
+  via: listingId
+  inferred_from: path
+- from: Listing
+  to: ListingIssue
+  type: has_many
+  via: listingId
+  inferred_from: path
+- from: Listing
+  to: ListingKey
+  type: has_many
+  via: listingId
+  inferred_from: path
+- from: Listing
+  to: OnboardingCheck
+  type: has_many
+  via: listingId
+  inferred_from: path
+- from: Listing
+  to: Tenancy
+  type: has_many
+  via: listingId
+  inferred_from: filter
+- from: Listing
+  to: Completion
+  type: has_many
+  via: listingId
+  inferred_from: filter
+- from: Listing
+  to: Lead
+  type: has_many
+  via: listingId
+  inferred_from: filter
+- from: Listing
+  to: Task
+  type: has_many
+  via: listingId
+  inferred_from: filter
+- from: Listing
+  to: Document
+  type: has_many
+  via: listingId
+  inferred_from: body
+- from: Listing
+  to: Branch
+  type: belongs_to
+  via: branchId
+  inferred_from: filter
+- from: Listing
+  to: Contact
+  type: belongs_to
+  via: contactId
+  inferred_from: body
+  note: contactId is required on createListing — the vendor or landlord.
+- from: Listing
+  to: SearchRegion
+  type: belongs_to
+  via: mainSearchRegionId
+  inferred_from: filter
+- from: Branch
+  to: Lead
+  type: has_many
+  via: branchId
+  inferred_from: filter
+- from: Branch
+  to: Tenancy
+  type: has_many
+  via: branchId
+  inferred_from: filter
+- from: Branch
+  to: Completion
+  type: has_many
+  via: branchId
+  inferred_from: filter
+- from: Tenancy
+  to: Contact
+  type: belongs_to
+  via: tenantId
+  inferred_from: filter
+- from: Task
+  to: User
+  type: belongs_to
+  via: assignedTo
+  inferred_from: filter
+- from: Task
+  to: User
+  type: belongs_to
+  via: createdBy
+  inferred_from: filter
+- from: ListingKey
+  to: Contact
+  type: has_many
+  via: check-out/check-in
+  inferred_from: path
+  note: checkOutListingKey / checkInListingKey model key custody; the counterparty field is unpublished.
+identifiers:
+  format: integer
+  published_prefixes: null
+  note: Contacts and listings additionally accept uuid and externalId as lookup filters, so a UUID and
+    a customer-supplied external id exist alongside the integer id.
+render: null

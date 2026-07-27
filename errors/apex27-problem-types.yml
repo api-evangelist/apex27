@@ -1,0 +1,58 @@
+generated: '2026-07-26'
+method: derived
+source: live probes of https://api.apex27.co.uk (2026-07-26) + openapi/apex27-crm-api-openapi.yml
+format: vendor-envelope
+rfc9457: false
+envelope:
+  media_type: text/json
+  fields:
+  - name: success
+    type: boolean
+    note: false on error
+  - name: message
+    type: string
+    note: human-readable message
+  - name: errors
+    type: array
+    note: empty on the observed 401; per-field detail shape is unpublished
+docs: null
+docs_evidence: Apex27 publishes no error reference. https://docs.apex27.co.uk (its own declared documentationUrl)
+  returned HTTP 404.
+problems:
+- status: 401
+  title: Unauthorised
+  type: null
+  body:
+    success: false
+    message: Unauthorised.
+    errors: []
+  meaning: The x-api-key header is missing, malformed, or not valid for the tenant.
+  remediation: Obtain a key from the Apex27 CRM admin panel of a paying tenant and send it as the x-api-key
+    request header.
+  method: observed
+  observed_on:
+  - https://api.apex27.co.uk/
+  - https://api.apex27.co.uk/branches
+  - https://api.apex27.co.uk/contacts
+  - https://api.apex27.co.uk/listings
+  - https://api.apex27.co.uk/users
+  - https://api.apex27.co.uk/webhooks
+  - https://api.apex27.co.uk/tenancies
+  - https://api.apex27.co.uk/leads
+  - https://api.apex27.co.uk/tasks
+  - https://api.apex27.co.uk/documents
+  - https://dev-api.apex27.co.uk/
+- status: 404
+  title: Not found
+  type: null
+  meaning: The route or resource does not exist.
+  remediation: Check the path against the derived OpenAPI; Apex27 pluralises collections (/listings, not
+    /properties).
+  method: observed
+  observed_on:
+  - https://api.apex27.co.uk/properties
+  - https://api.apex27.co.uk/v1
+  - https://api.apex27.co.uk/$metadata
+unobservable: 'Authenticated error classes (400 validation, 403 permission, 409 conflict, 422, 429 rate
+  limit, 5xx) could not be observed: every route is key-gated and Apex27 issues no self-serve key. They
+  are deliberately NOT listed here rather than guessed.'

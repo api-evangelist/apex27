@@ -1,0 +1,37 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Apex27 Portal API
+  version: 1.0.0
+extends: openapi/apex27-portal-api-openapi.yml
+x-apievangelist:
+  generated: '2026-07-26'
+  method: generated
+  note: The base document in openapi/ is itself an API Evangelist derivation from Apex27's own published
+    npm client — Apex27 publishes no spec. This overlay carries the catalogue annotations separately so
+    the derived spec stays a faithful reproduction of the vendor client's request map.
+actions:
+- target: $.info
+  update:
+    x-apievangelist-slug: apex27
+    x-apievangelist-provider: Apex27 Limited
+    x-apievangelist-country: United Kingdom
+    x-apievangelist-sector: Real Estate / PropTech
+    x-apievangelist-access: customer-only (no self-serve developer signup, no sandbox)
+    x-apievangelist-provider-published-spec: false
+    x-apievangelist-artifacts:
+    - authentication/apex27-authentication.yml
+    - conventions/apex27-conventions.yml
+    - errors/apex27-problem-types.yml
+    - lifecycle/apex27-lifecycle.yml
+    - conformance/apex27-conformance.yml
+    - data-model/apex27-data-model.yml
+    - vocabulary/apex27-vocabulary.yml
+    - asyncapi/apex27-webhooks.yml
+    - security/apex27-domain-security.yml
+    - packages/apex27-packages.yml
+    - changelog/apex27-changelog.yml
+    - skills/_index.yml
+- target: $.components.securitySchemes
+  update:
+    x-apievangelist-note: Static tenant API key. No OAuth, no OIDC, no scopes, no key rotation policy
+      published.

@@ -1,0 +1,83 @@
+generated: '2026-07-26'
+method: generated
+source: openapi/apex27-crm-api-openapi.yml, openapi/apex27-portal-api-openapi.yml, conventions/apex27-conventions.yml,
+  errors/apex27-problem-types.yml
+note: API Evangelist generated Agent Skills. Apex27 publishes no AGENTS.md or skill files. Every operationId
+  referenced was verified against the derived OpenAPIs in this repository. Because Apex27 has no sandbox
+  and no self-serve key, every one of these skills is a live-tenant operation — the skills say so explicitly.
+skills:
+- file: apex27-capture-lead-and-book-viewing.md
+  name: Capture a lead and book a viewing in Apex27
+  description: Take an inbound property enquiry, create or match the contact, raise the lead, find a real
+    appointment slot and book the viewing against the listing.
+  api: openapi/apex27-crm-api-openapi.yml
+  operations:
+  - listContacts
+  - createContact
+  - createLead
+  - getViewingAvailability
+  - createListingViewing
+  - createTask
+  - createContactNote
+  - getListing
+- file: apex27-manage-tenancies-and-issues.md
+  name: Run Apex27 lettings management — tenancies, inspections, issues and keys
+  description: Work the lettings side of the Apex27 CRM API — track live tenancies, run inspections, raise
+    and resolve maintenance issues, and manage key custody.
+  api: openapi/apex27-crm-api-openapi.yml
+  operations:
+  - listTenancies
+  - getTenancy
+  - patchTenancy
+  - listListingInspections
+  - createListingInspection
+  - listListingIssues
+  - createListingIssue
+  - updateListingIssue
+  - listListingKeys
+  - checkOutListingKey
+  - checkInListingKey
+  - createTask
+  - listListingOnboardingChecks
+  - updateListingOnboardingCheck
+- file: apex27-portal-search-and-enquiry.md
+  name: Search an Apex27 agency website and submit an enquiry
+  description: Use the per-tenant Apex27 Portal API to search an agency's public inventory, render listings,
+    capture an enquiry or valuation request, and manage a visitor's saved properties.
+  api: openapi/apex27-portal-api-openapi.yml
+  operations:
+  - getSearchOptions
+  - getListings
+  - getListing
+  - contactAgent
+  - requestValuation
+  - addFavourite
+  - removeFavourite
+  - getStatistics
+- file: apex27-subscribe-to-webhooks.md
+  name: Manage Apex27 webhook subscriptions
+  description: Register, inspect and retire webhook subscriptions on the Apex27 CRM API, and fall back
+    to timestamp polling because Apex27 publishes no event catalogue.
+  api: openapi/apex27-crm-api-openapi.yml
+  operations:
+  - listWebhooks
+  - createWebhook
+  - getWebhook
+  - updateWebhook
+  - deleteWebhook
+  - listListings
+  - listContacts
+  - listTenancies
+- file: apex27-sync-listings.md
+  name: Sync Apex27 listings into an external system
+  description: Pull the agency's live property inventory out of the Apex27 CRM API, expand the media and
+    rooms an agent cares about, and keep it current with incremental polling.
+  api: openapi/apex27-crm-api-openapi.yml
+  operations:
+  - listListings
+  - getListing
+  - listListingMedia
+  - listListingRooms
+  - listListingLinks
+  - listSearchRegions
+  - listBranches

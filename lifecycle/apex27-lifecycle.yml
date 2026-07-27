@@ -1,0 +1,36 @@
+generated: '2026-07-26'
+method: searched
+source: https://apex27.co.uk/crm-changelog plus live probes 2026-07-26
+versioning:
+  scheme: unversioned
+  current: null
+  evidence: No version segment in any path; https://api.apex27.co.uk/v1 returned HTTP 404.
+  product_release_train:
+    scheme: 1.N weekly
+    current: '1.183'
+    docs: https://apex27.co.uk/crm-changelog
+deprecation:
+  policy_url: null
+  sunset_header: null
+  deprecation_header: null
+  evidence: No deprecation or sunset policy is published anywhere on apex27.co.uk; the sitemap has no
+    developer section.
+sla:
+  url: null
+  uptime_target: null
+  evidence: No SLA or uptime commitment is published. Pricing is a flat GBP 35 per user per month on a
+    30-day rolling contract.
+status_page: null
+status_page_evidence: https://status.apex27.co.uk returned HTTP 404 on 2026-07-26. No status page is linked
+  from the site or the sitemap.
+environments:
+- name: production
+  base_url: https://api.apex27.co.uk
+  status: live (401 without a key)
+- name: development
+  base_url: https://dev-api.apex27.co.uk
+  status: live (401 without a key)
+  note: 'Declared inside Apex27''s own npm credential as a selectable base URL. It is key-gated, not an
+    open sandbox: no test keys, test data or fixtures are published, so no Sandbox pointer is wired.'
+deprecated_operations: []
+note: No StatusPage or Deprecation pointer is wired in apis.yml because neither exists.

@@ -1,0 +1,53 @@
+generated: '2026-07-26'
+method: derived
+source: openapi/apex27-crm-api-openapi.yml (/webhooks operations) + https://apex27.co.uk/integration/n8n
+spec_type: Webhooks
+asyncapi:
+  published: false
+  evidence: No AsyncAPI document exists at any probed location, and Apex27 publishes no event catalogue.
+surface:
+  kind: subscription-managed webhooks
+  management_api: https://api.apex27.co.uk/webhooks
+  auth: x-api-key header, same as the rest of the CRM API
+  evidence: Apex27 exposes webhook subscriptions as a first-class CRM resource with full CRUD, and its
+    own integration page states the n8n node gives "direct access to the full Apex27 CRM API, covering
+    everything from contacts and listings to viewings, valuations, and webhooks". Every /webhooks route
+    returned HTTP 401 (not 404) on an anonymous probe, confirming the routes are live.
+operations:
+- operationId: listWebhooks
+  method: GET
+  path: /webhooks
+  summary: List webhook subscriptions
+- operationId: createWebhook
+  method: POST
+  path: /webhooks
+  summary: Create a webhook subscription
+- operationId: getWebhook
+  method: GET
+  path: /webhooks/{webhookId}
+  summary: Get a webhook subscription
+- operationId: updateWebhook
+  method: PUT
+  path: /webhooks/{webhookId}
+  summary: Update a webhook subscription
+- operationId: deleteWebhook
+  method: DELETE
+  path: /webhooks/{webhookId}
+  summary: Delete a webhook subscription
+events: []
+events_note: DELIBERATELY EMPTY. Apex27 publishes no event-type catalogue and no payload schema, and the
+  subscription body is passed through as opaque JSON by Apex27's own client. The event names are only
+  discoverable inside a paying tenant. Nothing is guessed here.
+delivery:
+  retries: null
+  signing: null
+  ordering: null
+  ip_allowlist: null
+  evidence: No delivery, retry, signature-verification or replay semantics are published.
+polling_alternative:
+  available: true
+  params:
+  - minDtsUpdated
+  - minDtsCreatedUpdated
+  note: Contacts, listings, tenancies and saved listing searches accept a minimum-updated timestamp, so
+    incremental polling is a workable substitute where the event catalogue is unknown.

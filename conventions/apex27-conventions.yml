@@ -1,0 +1,104 @@
+generated: '2026-07-26'
+method: derived
+source: openapi/apex27-crm-api-openapi.yml, openapi/apex27-portal-api-openapi.yml, npm n8n-nodes-apex27crm@1.0.4,
+  live probes
+authentication:
+  crm_api:
+    style: api key in request header
+    header: x-api-key
+    issuance: CRM admin panel, paying tenants only
+    self_serve: false
+  portal_api:
+    style: api key in query string
+    parameter: api_key
+    issuance: Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section
+    self_serve: false
+  see: authentication/apex27-authentication.yml
+idempotency:
+  supported: false
+  header: null
+  evidence: No idempotency key header, parameter or documented retry semantics appears in Apex27's own
+    client node or anywhere on the public site. Creates (POST /contacts, POST /leads, POST /listings/{listingId}/viewings)
+    are not safely retryable. No Idempotency pointer is wired because there is no idempotency contract.
+pagination:
+  style: page number
+  params:
+  - page
+  - pageSize
+  page_minimum: 1
+  page_size_default: 25
+  page_size_minimum: 25
+  page_size_maximum: 250
+  applies_to: Apex27 CRM API list operations
+  portal_api:
+    params:
+    - page
+    - page_size
+    style: page number
+  response_fields: null
+  response_fields_evidence: No response envelope is published, so the pagination metadata fields returned
+    by the API are unknown.
+filtering:
+  style: flat query parameters
+  examples:
+  - minDtsUpdated
+  - minDtsCreatedUpdated
+  - includeArchived
+  - branchId
+  - transactionType
+  incremental_sync:
+    supported: true
+    params:
+    - minDtsUpdated
+    - minDtsCreatedUpdated
+    note: Contacts, listings, tenancies and listing searches accept a minimum-updated timestamp, which
+      makes incremental polling possible in the absence of an event catalogue.
+field_expansion:
+  style: boolean include flags
+  params:
+  - includeContacts
+  - includeImages
+  - includeOffers
+  - includeValuations
+  - includeRooms
+  applies_to: GET /listings and GET /listings/{listingId}
+partial_update:
+  supported: true
+  methods:
+  - PATCH
+  note: Contacts, listings and tenancies support PATCH alongside a full-replace PUT. Most other resources
+    are PUT-only.
+custom_headers:
+  supported: true
+  note: Apex27's own node exposes an arbitrary custom-header collection on every request, implying the
+    API tolerates additional headers.
+request_tracing:
+  header: null
+  evidence: No request-id or correlation header is documented or returned in the probed 401 responses.
+versioning:
+  style: none
+  see: lifecycle/apex27-lifecycle.yml
+error_envelope:
+  shape:
+    success: boolean
+    message: string
+    errors: array
+  media_type: text/json
+  rfc9457: false
+  example:
+    success: false
+    message: Unauthorised.
+    errors: []
+  evidence: Recorded verbatim from a live probe of https://api.apex27.co.uk/ on 2026-07-26.
+  see: errors/apex27-problem-types.yml
+rate_limiting:
+  documented: false
+  headers: null
+  evidence: No rate-limit documentation and no RateLimit/X-RateLimit headers observed on the anonymous
+    401 responses.
+content_types:
+  request:
+  - application/json (CRM API)
+  - application/x-www-form-urlencoded (Portal API writes)
+  response:
+  - text/json
