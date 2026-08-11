@@ -102,6 +102,8 @@ apis:
     name: API Evangelist overlay
   baseURL: https://portal-abcd1234.apex27.co.uk/api
 common:
+- type: MCPServer
+  url: mcp/apex27-mcp.yml
 - type: AgenticAccess
   url: agentic-access/apex27-agentic-access.yml
 - type: DomainSecurity
