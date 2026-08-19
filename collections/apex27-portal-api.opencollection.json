@@ -1,0 +1,539 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apex27 Portal API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Listings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search listings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-abcd1234.apex27.co.uk/api/get-listings",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Portal API key, issued under Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section."
+              },
+              {
+                "name": "transaction_type",
+                "value": "",
+                "type": "query",
+                "description": "Required if property_class is not set."
+              },
+              {
+                "name": "property_class",
+                "value": "",
+                "type": "query",
+                "description": "Required if transaction_type is not set."
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "county",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "location",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "property_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "keywords[]",
+                "value": "",
+                "type": "query",
+                "description": "Repeatable keyword filter."
+              },
+              {
+                "name": "min_price",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "max_price",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "min_beds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "max_beds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "min_baths",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "website_status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search_region_ids[]",
+                "value": "",
+                "type": "query",
+                "description": "Repeatable search-region identifier filter."
+              },
+              {
+                "name": "main_search_region_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "min_gross_yield",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "overseas",
+                "value": "",
+                "type": "query",
+                "description": "Boolean flag sent as 1 or 0."
+              },
+              {
+                "name": "featured",
+                "value": "",
+                "type": "query",
+                "description": "Boolean flag sent as 1 or 0."
+              },
+              {
+                "name": "include_sstc",
+                "value": "",
+                "type": "query",
+                "description": "Include Sold STC / Let Agreed. Sent as 1 or 0."
+              },
+              {
+                "name": "sw",
+                "value": "",
+                "type": "query",
+                "description": "South-west corner of a bounding box."
+              },
+              {
+                "name": "ne",
+                "value": "",
+                "type": "query",
+                "description": "North-east corner of a bounding box."
+              },
+              {
+                "name": "image_count",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "image_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "image_mode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "image_width",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "image_height",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search the agency portal inventory across sales, lettings, commercial and land."
+        },
+        {
+          "info": {
+            "name": "Get a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-abcd1234.apex27.co.uk/api/get-listing",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Portal API key, issued under Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "image_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "image_mode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "image_width",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "image_height",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a single listing by identifier, with image rendering options."
+        },
+        {
+          "info": {
+            "name": "Get search options",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-abcd1234.apex27.co.uk/api/get-search-options",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Portal API key, issued under Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section."
+              }
+            ]
+          },
+          "docs": "Retrieve the filter vocabularies (regions, property types, price bands) the portal search accepts."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Statistics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get portal statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://portal-abcd1234.apex27.co.uk/api/get-statistics",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Portal API key, issued under Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section."
+              },
+              {
+                "name": "transaction_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "date_start",
+                "value": "",
+                "type": "query",
+                "description": "ISO date."
+              },
+              {
+                "name": "date_end",
+                "value": "",
+                "type": "query",
+                "description": "ISO date."
+              }
+            ]
+          },
+          "docs": "Retrieve portal inventory statistics for a transaction type over an optional date range."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Enquiries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send an enquiry to the agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://portal-abcd1234.apex27.co.uk/api/contact",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Portal API key, issued under Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "first_name",
+                  "value": ""
+                },
+                {
+                  "name": "last_name",
+                  "value": ""
+                },
+                {
+                  "name": "email",
+                  "value": ""
+                },
+                {
+                  "name": "listing_id",
+                  "value": ""
+                },
+                {
+                  "name": "listing_reference",
+                  "value": ""
+                },
+                {
+                  "name": "branch_id",
+                  "value": ""
+                },
+                {
+                  "name": "request_listing_details",
+                  "value": ""
+                },
+                {
+                  "name": "request_viewing",
+                  "value": ""
+                },
+                {
+                  "name": "request_valuation",
+                  "value": ""
+                },
+                {
+                  "name": "source_id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Submit a website enquiry against a listing, a listing reference or a branch."
+        },
+        {
+          "info": {
+            "name": "Request a valuation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://portal-abcd1234.apex27.co.uk/api/request-valuation",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Portal API key, issued under Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "first_name",
+                  "value": ""
+                },
+                {
+                  "name": "last_name",
+                  "value": ""
+                },
+                {
+                  "name": "email",
+                  "value": ""
+                },
+                {
+                  "name": "address_1",
+                  "value": ""
+                },
+                {
+                  "name": "city",
+                  "value": ""
+                },
+                {
+                  "name": "postal_code",
+                  "value": ""
+                },
+                {
+                  "name": "transaction_type",
+                  "value": ""
+                },
+                {
+                  "name": "title",
+                  "value": ""
+                },
+                {
+                  "name": "country",
+                  "value": ""
+                },
+                {
+                  "name": "tenure",
+                  "value": ""
+                },
+                {
+                  "name": "condition",
+                  "value": ""
+                },
+                {
+                  "name": "furnished",
+                  "value": ""
+                },
+                {
+                  "name": "outside_spaces[]",
+                  "value": ""
+                },
+                {
+                  "name": "latitude",
+                  "value": ""
+                },
+                {
+                  "name": "longitude",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Submit a market-appraisal request from the agency website."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Favourites",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add a listing to a contact favourites",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://portal-abcd1234.apex27.co.uk/api/add-favourite",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Portal API key, issued under Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "listing_id",
+                  "value": ""
+                },
+                {
+                  "name": "contact_id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Save a listing against a portal contact."
+        },
+        {
+          "info": {
+            "name": "Remove a listing from a contact favourites",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://portal-abcd1234.apex27.co.uk/api/remove-favourite",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Portal API key, issued under Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "listing_id",
+                  "value": ""
+                },
+                {
+                  "name": "contact_id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Remove a saved listing from a portal contact."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

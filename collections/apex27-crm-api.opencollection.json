@@ -1,0 +1,3439 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apex27 CRM API",
+    "version": "1.0.4"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get many contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/contacts",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "e164",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "minDtsUpdated",
+                "value": "",
+                "type": "query",
+                "description": "Only contacts updated at or after this timestamp."
+              },
+              {
+                "name": "includeArchived",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "single",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get many contacts. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Create a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/contacts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a contact. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/contacts/:contactId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 contact identifier."
+              }
+            ]
+          },
+          "docs": "Get a contact. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Replace a contact in full",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apex27.co.uk/contacts/:contactId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 contact identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace a contact in full. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Partially update a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.apex27.co.uk/contacts/:contactId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 contact identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update a contact. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Delete a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.apex27.co.uk/contacts/:contactId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 contact identifier."
+              }
+            ]
+          },
+          "docs": "Delete a contact. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Call Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get many call logs for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/contacts/:contactId/call-logs",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 contact identifier."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get many call logs for a contact. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Create a call log for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/contacts/:contactId/call-logs",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 contact identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a call log for a contact. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Create a call log by E.164 number or email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/call-logs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a call log by E.164 number or email. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Update a call log",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apex27.co.uk/contacts/:contactId/call-logs/:callLogId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 contact identifier."
+              },
+              {
+                "name": "callLogId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a call log. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Delete a call log",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.apex27.co.uk/contacts/:contactId/call-logs/:callLogId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 contact identifier."
+              },
+              {
+                "name": "callLogId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a call log. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Notes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get many notes for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/contacts/:contactId/notes",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 contact identifier."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get many notes for a contact. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Create a note on a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/contacts/:contactId/notes",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 contact identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a note on a contact. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get a contact note",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/contacts/:contactId/notes/:noteId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 contact identifier."
+              },
+              {
+                "name": "noteId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a contact note. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Update a contact note",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apex27.co.uk/contacts/:contactId/notes/:noteId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 contact identifier."
+              },
+              {
+                "name": "noteId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a contact note. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Delete a contact note",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.apex27.co.uk/contacts/:contactId/notes/:noteId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 contact identifier."
+              },
+              {
+                "name": "noteId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a contact note. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get many notes for a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId/notes",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get many notes for a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Create a note on a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/listings/:listingId/notes",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a note on a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get a listing note",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId/notes/:noteId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "noteId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a listing note. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Update a listing note",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apex27.co.uk/listings/:listingId/notes/:noteId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "noteId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a listing note. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Delete a listing note",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.apex27.co.uk/listings/:listingId/notes/:noteId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "noteId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a listing note. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contact Referrals",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get many referrals for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/contacts/:contactId/referrals",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 contact identifier."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get many referrals for a contact. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Create a referral for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/contacts/:contactId/referrals",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 contact identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a referral for a contact. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Update a contact referral",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apex27.co.uk/contacts/:contactId/referrals/:contactReferralId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 contact identifier."
+              },
+              {
+                "name": "contactReferralId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a contact referral. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Delete a contact referral",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.apex27.co.uk/contacts/:contactId/referrals/:contactReferralId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 contact identifier."
+              },
+              {
+                "name": "contactReferralId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a contact referral. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contact Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get many contact orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/contact-orders",
+            "params": [
+              {
+                "name": "reference",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get many contact orders. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get a contact order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/contact-orders/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a contact order. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Update a contact order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apex27.co.uk/contact-orders/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a contact order. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Delete a contact order",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.apex27.co.uk/contact-orders/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a contact order. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Listings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get many listings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings",
+            "params": [
+              {
+                "name": "branchId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "transactionType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "minBeds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "minBaths",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "minPrice",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "maxPrice",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "websiteStatus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mainSearchRegionId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "archived",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "activeTenancies",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "minDtsCreatedUpdated",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "minDtsUpdated",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeContacts",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeImages",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeOffers",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeValuations",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeRooms",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get many listings. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Create a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/listings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "includeContacts",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeImages",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeOffers",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeValuations",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeRooms",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Replace a listing in full",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apex27.co.uk/listings/:listingId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace a listing in full. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Partially update a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.apex27.co.uk/listings/:listingId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Delete a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.apex27.co.uk/listings/:listingId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              }
+            ]
+          },
+          "docs": "Delete a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Listing Media",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get media for a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId/:mediaType",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "mediaType",
+                "value": "",
+                "type": "path",
+                "description": "Media collection on the listing."
+              }
+            ]
+          },
+          "docs": "Get media for a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Add media to a listing by URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/listings/:listingId/:mediaType",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "mediaType",
+                "value": "",
+                "type": "path",
+                "description": "Media collection on the listing."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add media to a listing by URL. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Delete a listing media file or a listing link",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.apex27.co.uk/listings/:listingId/:collection/:itemId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "Media or link collection on the listing. Media values (images, epcs, floorplans, brochures, videos) delete a media file; link values (virtual-tours, videos, epc-reports, brochures) delete a link. The two sets overlap on videos and brochures."
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the item being deleted. Apex27's own client calls this fileId for media and linkId for links."
+              }
+            ]
+          },
+          "docs": "Delete a listing media file or a listing link. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Listing Rooms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get rooms for a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId/rooms",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get rooms for a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Create a room on a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/listings/:listingId/rooms",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a room on a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get a listing room",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId/rooms/:roomId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "roomId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a listing room. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Update a listing room",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apex27.co.uk/listings/:listingId/rooms/:roomId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "roomId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a listing room. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Delete a listing room",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.apex27.co.uk/listings/:listingId/rooms/:roomId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "roomId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a listing room. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Listing Links",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get links for a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId/links/:linkType",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "linkType",
+                "value": "",
+                "type": "path",
+                "description": "Link collection on the listing."
+              }
+            ]
+          },
+          "docs": "Get links for a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Add a link to a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/listings/:listingId/links/:linkType",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "linkType",
+                "value": "",
+                "type": "path",
+                "description": "Link collection on the listing."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a link to a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Offers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all offers across listings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/offers",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get all offers across listings. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get offers for a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId/offers",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get offers for a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Create an offer on a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/listings/:listingId/offers",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an offer on a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get an offer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId/offers/:offerId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "offerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an offer. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Update an offer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apex27.co.uk/listings/:listingId/offers/:offerId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "offerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an offer. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Delete an offer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.apex27.co.uk/listings/:listingId/offers/:offerId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "offerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an offer. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Valuations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all valuations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/valuations",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get all valuations. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get valuations for a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId/valuations",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get valuations for a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Create a valuation on a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/listings/:listingId/valuations",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a valuation on a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get a valuation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId/valuations/:valuationId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "valuationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a valuation. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Update a valuation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apex27.co.uk/listings/:listingId/valuations/:valuationId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "valuationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a valuation. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Delete a valuation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.apex27.co.uk/listings/:listingId/valuations/:valuationId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "valuationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a valuation. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Viewings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all viewings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/viewings",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get all viewings. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get viewings for a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId/viewings",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get viewings for a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Create a viewing on a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/listings/:listingId/viewings",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a viewing on a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get a viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId/viewings/:viewingId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "viewingId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a viewing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Update a viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apex27.co.uk/listings/:listingId/viewings/:viewingId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "viewingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a viewing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Delete a viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.apex27.co.uk/listings/:listingId/viewings/:viewingId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "viewingId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a viewing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Inspections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all inspections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/inspections",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get all inspections. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get inspections for a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId/inspections",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get inspections for a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Create an inspection on a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/listings/:listingId/inspections",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an inspection on a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get an inspection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId/inspections/:inspectionId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "inspectionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an inspection. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Update an inspection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apex27.co.uk/listings/:listingId/inspections/:inspectionId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "inspectionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an inspection. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Delete an inspection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.apex27.co.uk/listings/:listingId/inspections/:inspectionId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "inspectionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an inspection. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Listing Issues",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get issues for a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId/issues",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get issues for a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Create an issue on a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/listings/:listingId/issues",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an issue on a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId/issues/:issueId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "issueId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an issue. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Update an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apex27.co.uk/listings/:listingId/issues/:issueId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "issueId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an issue. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Delete an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.apex27.co.uk/listings/:listingId/issues/:issueId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "issueId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an issue. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Listing Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get keys for a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId/keys",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get keys for a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Create a key for a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/listings/:listingId/keys",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a key for a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get a listing key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId/keys/:keyId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "keyId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a listing key. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Update a listing key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apex27.co.uk/listings/:listingId/keys/:keyId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "keyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a listing key. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Delete a listing key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.apex27.co.uk/listings/:listingId/keys/:keyId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "keyId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a listing key. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Check out a listing key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/listings/:listingId/keys/:keyId/check-out",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "keyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check out a listing key. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Check in a listing key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/listings/:listingId/keys/:keyId/check-in",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "keyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check in a listing key. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Onboarding Checks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get onboarding checks for a listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId/onboarding-checks",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get onboarding checks for a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get an onboarding check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listings/:listingId/onboarding-checks/:onboardingCheckId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "onboardingCheckId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an onboarding check. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Update an onboarding check",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apex27.co.uk/listings/:listingId/onboarding-checks/:onboardingCheckId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Apex27 listing identifier."
+              },
+              {
+                "name": "onboardingCheckId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an onboarding check. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Leads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get many leads",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/leads",
+            "params": [
+              {
+                "name": "branchId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get many leads. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Create a lead",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/leads",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a lead. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get a lead",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/leads/:leadId",
+            "params": [
+              {
+                "name": "leadId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a lead. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Update a lead",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apex27.co.uk/leads/:leadId",
+            "params": [
+              {
+                "name": "leadId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a lead. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Delete a lead",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.apex27.co.uk/leads/:leadId",
+            "params": [
+              {
+                "name": "leadId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a lead. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get many tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/tasks",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "createdBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "assignedTo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get many tasks. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Create a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/tasks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a task. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a task. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Update a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apex27.co.uk/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a task. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Delete a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.apex27.co.uk/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a task. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get many webhook subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/webhooks"
+          },
+          "docs": "Get many webhook subscriptions. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Create a webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a webhook subscription. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get a webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a webhook subscription. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Update a webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apex27.co.uk/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a webhook subscription. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Delete a webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.apex27.co.uk/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a webhook subscription. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Branches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get many branches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/branches",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get many branches. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get many users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/users",
+            "params": [
+              {
+                "name": "postal_code",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get many users. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a user. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tenancies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get many tenancies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/tenancies",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "branchId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "activeOnly",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "minDtsUpdated",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get many tenancies. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get a tenancy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/tenancies/:tenancyId",
+            "params": [
+              {
+                "name": "tenancyId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a tenancy. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Partially update a tenancy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.apex27.co.uk/tenancies/:tenancyId",
+            "params": [
+              {
+                "name": "tenancyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update a tenancy. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Completions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get many completions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/completions",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "branchId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "activeOnly",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get many completions. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get a completion",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/completions/:completionId",
+            "params": [
+              {
+                "name": "completionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a completion. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search Regions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get many search regions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/search-regions",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get many search regions. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get a search region",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/search-regions/:searchRegionId",
+            "params": [
+              {
+                "name": "searchRegionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a search region. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Listing Searches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get many saved listing searches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/listing-searches",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "transactionType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "minDtsCreatedUpdated",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum 1)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (minimum 25, maximum 250)."
+              }
+            ]
+          },
+          "docs": "Get many saved listing searches. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Create a saved listing search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/listing-searches",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a saved listing search. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Update a saved listing search",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.apex27.co.uk/listing-searches/:listingSearchId",
+            "params": [
+              {
+                "name": "listingSearchId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a saved listing search. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Delete a saved listing search",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.apex27.co.uk/listing-searches/:listingSearchId",
+            "params": [
+              {
+                "name": "listingSearchId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a saved listing search. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add a document against a listing or contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/documents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a document against a listing or contact. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Notifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an in-app notification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/notifications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an in-app notification. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Client Portal",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate a client-portal contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apex27.co.uk/client-portal/authenticate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticate a client-portal contact. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get a client-portal log-in URL for a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/client-portal/log-in-url",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a client-portal log-in URL for a contact. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get an auto sign-in URL for a client-portal contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/client-portal/sign-in-url",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get an auto sign-in URL for a client-portal contact. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Availability",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get valuation appointment availability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/availability/valuations",
+            "params": [
+              {
+                "name": "postal_code",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "listing_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "date_start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "date_end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "time_start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "time_end",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get valuation appointment availability. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        },
+        {
+          "info": {
+            "name": "Get viewing appointment availability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/availability/viewings",
+            "params": [
+              {
+                "name": "postal_code",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "listing_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "date_start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "date_end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "time_start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "time_end",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get viewing appointment availability. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Global Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Run a global search across listings, contacts, issues and tenancies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apex27.co.uk/global-search",
+            "params": [
+              {
+                "name": "term",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "branchId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "transactionType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeArchived",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "searchListings",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "searchContacts",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "searchIssues",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "searchTenancies",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Run a global search across listings, contacts, issues and tenancies. Derived from the request the Apex27-published n8n node issues for this resource and operation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

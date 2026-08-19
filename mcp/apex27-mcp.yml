@@ -533,3 +533,9 @@ tools:
   description: Remove a listing from a contact favourites
   category: Favourites
   source_operation: openapi/apex27-portal-api-openapi.yml#removeFavourite
+deployment:
+  mode: none
+  verified: derived
+  tools: 129
+  checked: '2026-08-12'
+  source: catalog MCP census
