@@ -19,6 +19,19 @@ description: Apex27 Limited is a United Kingdom estate agency CRM vendor, founde
   to HM Land Registry and Ordnance Survey, not to the CRM vendors.
 image: https://apex27.co.uk/img/icon.png
 tags:
+- Real-Estate
+- United Kingdom
+- PropTech
+- Property Listings
+- CRM
+- Estate Agency
+- Lettings
+- Rentals
+- Property Management
+- Valuation
+- Tenancy
+- Conveyancing
+tags_raw:
 - Real Estate
 - United Kingdom
 - PropTech
@@ -51,6 +64,13 @@ apis:
   humanURL: https://apex27.co.uk/integration/n8n
   baseURL: https://api.apex27.co.uk
   tags:
+  - Real-Estate
+  - CRM
+  - Property Listings
+  - Lettings
+  - Tenancy
+  - United Kingdom
+  tags_raw:
   - Real Estate
   - CRM
   - Property Listings
@@ -84,6 +104,12 @@ apis:
     > Websites > [Your Website] > Integrations. No public documentation page for it was found.
   humanURL: https://apex27.co.uk/websites
   tags:
+  - Real-Estate
+  - Property Listings
+  - Property Search
+  - Valuation
+  - United Kingdom
+  tags_raw:
   - Real Estate
   - Property Listings
   - Property Search
