@@ -48,36 +48,16 @@ created: '2026-07-26'
 modified: '2026-07-26'
 specificationVersion: '0.23'
 apis:
-- aid: apex27:apex27-crm-api
-  name: Apex27 CRM API
-  description: The Apex27 CRM API is the vendor's REST interface over the estate agency CRM,
-    covering contacts, leads, listings and their media, rooms, keys, notes, offers, viewings,
-    valuations, inspections, issues and onboarding checks, plus branches, users, tasks, documents,
-    tenancies, completions, call logs, notifications, saved listing searches, search regions,
-    global search, client portal sign-in links and webhook subscriptions. It authenticates with
-    an `x-api-key` request header and paginates with `page` and `pageSize` (25-250). The host
-    is live — every probed collection returned HTTP 401 Unauthorised — but there is no public
-    reference documentation; the documentation URL declared in Apex27's own published n8n credential
-    (https://docs.apex27.co.uk) returned HTTP 404 on 2026-07-26. Keys are issued to paying customers
-    inside the CRM admin panel, so this is a customer-only surface, not a self-serve developer
-    API.
+- aid: apex27:apex27-availability-api
+  name: Apex27 Availability API
+  description: Appointment availability for valuations and viewings.
   humanURL: https://apex27.co.uk/integration/n8n
   baseURL: https://api.apex27.co.uk
   tags:
-  - Real-Estate
-  - CRM
-  - Property Listings
-  - Lettings
-  - Tenancy
-  - United Kingdom
-  tags_raw:
-  - Real Estate
-  - CRM
-  - Property Listings
-  - Lettings
-  - Tenancy
-  - United Kingdom
+  - Availability
   properties:
+  - type: OpenAPI
+    url: openapi/apex27-availability-api-openapi.yml
   - type: Documentation
     url: https://apex27.co.uk/integration/n8n
   - type: Integrations
@@ -86,48 +66,719 @@ apis:
     url: https://www.npmjs.com/package/n8n-nodes-apex27crm
   - type: SignUp
     url: https://apex27.co.uk/estate-agent-software-sign-up
-  - type: OpenAPI
-    url: openapi/apex27-crm-api-openapi.yml
-    name: API Evangelist derived OpenAPI 3.1 (not provider-published)
-  - type: Overlay
-    url: overlays/apex27-crm-api-overlay.yaml
-    name: API Evangelist overlay
-- aid: apex27:apex27-portal-api
-  name: Apex27 Portal API
-  description: The Apex27 Portal API is the per-tenant, website-facing API that drives search
-    and enquiry on Apex27-built agency websites. Its documented operations are get-listings,
-    get-listing, get-search-options, get-statistics, contact, request-valuation, add-favourite
-    and remove-favourite, spanning sales, lettings and land inventory with sort and filter options.
-    It has no shared host — the base URL is the agency's own portal domain with /api appended
-    (the vendor's published credential uses the placeholder https://portal-abcd1234.apex27.co.uk/api)
-    — and it authenticates with an `api_key` query-string parameter issued under Admin Panel
-    > Websites > [Your Website] > Integrations. No public documentation page for it was found.
-  humanURL: https://apex27.co.uk/websites
-  tags:
-  - Real-Estate
-  - Property Listings
-  - Property Search
-  - Valuation
-  - United Kingdom
-  tags_raw:
-  - Real Estate
-  - Property Listings
-  - Property Search
-  - Valuation
-  - United Kingdom
-  properties:
   - type: Documentation
     url: https://apex27.co.uk/websites
   - type: Node
     url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-branches-api
+  name: Apex27 Branches API
+  description: Agency branches within the tenant.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Branches
+  properties:
   - type: OpenAPI
-    url: openapi/apex27-portal-api-openapi.yml
-    name: API Evangelist derived OpenAPI 3.1 (not provider-published)
-  - type: Overlay
-    url: overlays/apex27-portal-api-overlay.yaml
-    name: API Evangelist overlay
-  baseURL: https://portal-abcd1234.apex27.co.uk/api
+    url: openapi/apex27-branches-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-call-logs-api
+  name: Apex27 Call Logs API
+  description: Telephone activity recorded against a contact.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Call Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-call-logs-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-client-portal-api
+  name: Apex27 Client Portal API
+  description: Client-portal authentication and sign-in links.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Client Portal
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-client-portal-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-completions-api
+  name: Apex27 Completions API
+  description: Sales completions and progression.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Completions
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-completions-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-contact-orders-api
+  name: Apex27 Contact Orders API
+  description: Orders placed against a contact.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Contact Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-contact-orders-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-contact-referrals-api
+  name: Apex27 Contact Referrals API
+  description: Referrals raised against a contact (conveyancing, mortgage, survey).
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Contact Referrals
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-contact-referrals-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-contacts-api
+  name: Apex27 Contacts API
+  description: Applicants, vendors, landlords, tenants and buyers held in the CRM.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-contacts-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-documents-api
+  name: Apex27 Documents API
+  description: Documents attached to listings or contacts.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-documents-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-enquiries-api
+  name: Apex27 Enquiries API
+  description: Website enquiries and valuation requests.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Enquiries
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-enquiries-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-favourites-api
+  name: Apex27 Favourites API
+  description: Saved listings for a portal contact.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Favourites
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-favourites-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-global-search-api
+  name: Apex27 Global Search API
+  description: Cross-entity search.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Global Search
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-global-search-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-inspections-api
+  name: Apex27 Inspections API
+  description: Property inspections (lettings management).
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Inspections
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-inspections-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-leads-api
+  name: Apex27 Leads API
+  description: Inbound leads and their pipeline status.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Leads
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-leads-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-listing-issues-api
+  name: Apex27 Listing Issues API
+  description: Maintenance issues raised against a listing.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Listing Issues
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-listing-issues-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-listing-keys-api
+  name: Apex27 Listing Keys API
+  description: Key sets held for a listing, including check-out and check-in.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Listing Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-listing-keys-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-listing-links-api
+  name: Apex27 Listing Links API
+  description: Virtual tours, videos, EPC reports and brochure links on a listing.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Listing Links
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-listing-links-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-listing-media-api
+  name: Apex27 Listing Media API
+  description: Images, EPCs, floorplans, brochures and videos on a listing.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Listing Media
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-listing-media-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-listing-rooms-api
+  name: Apex27 Listing Rooms API
+  description: Room-by-room detail on a listing.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Listing Rooms
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-listing-rooms-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-listing-searches-api
+  name: Apex27 Listing Searches API
+  description: Saved applicant listing searches used for matching and alerts.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Listing Searches
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-listing-searches-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-listings-api
+  name: Apex27 Listings API
+  description: Sales, lettings, land and commercial property records.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Listings
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-listings-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-notes-api
+  name: Apex27 Notes API
+  description: Free-text notes attached to a contact or a listing.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Notes
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-notes-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-notifications-api
+  name: Apex27 Notifications API
+  description: In-app notifications to users, branches, listings or contacts.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-notifications-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-offers-api
+  name: Apex27 Offers API
+  description: Offers made against listings.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Offers
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-offers-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-onboarding-checks-api
+  name: Apex27 Onboarding Checks API
+  description: Compliance and onboarding checklists on a listing.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Onboarding Checks
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-onboarding-checks-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-search-regions-api
+  name: Apex27 Search Regions API
+  description: Named geographic search regions.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Search Regions
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-search-regions-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-statistics-api
+  name: Apex27 Statistics API
+  description: Portal inventory statistics.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Statistics
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-statistics-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-tasks-api
+  name: Apex27 Tasks API
+  description: Work items assigned to users.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-tenancies-api
+  name: Apex27 Tenancies API
+  description: Tenancy agreements and their lifecycle.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Tenancies
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-tenancies-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-users-api
+  name: Apex27 Users API
+  description: CRM users within the tenant.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-users-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-valuations-api
+  name: Apex27 Valuations API
+  description: Market appraisals and valuation appointments.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Valuations
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-valuations-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-viewings-api
+  name: Apex27 Viewings API
+  description: Viewing appointments.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Viewings
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-viewings-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
+- aid: apex27:apex27-webhooks-api
+  name: Apex27 Webhooks API
+  description: Webhook subscription management.
+  humanURL: https://apex27.co.uk/integration/n8n
+  baseURL: https://api.apex27.co.uk
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/apex27-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://apex27.co.uk/integration/n8n
+  - type: Integrations
+    url: https://apex27.co.uk/integrations
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  - type: SignUp
+    url: https://apex27.co.uk/estate-agent-software-sign-up
+  - type: Documentation
+    url: https://apex27.co.uk/websites
+  - type: Node
+    url: https://www.npmjs.com/package/n8n-nodes-apex27portal
 common:
+- type: Overlay
+  url: overlays/apex27-crm-api-overlay.yaml
+- type: Overlay
+  url: overlays/apex27-portal-api-overlay.yaml
 - type: MCPServer
   url: mcp/apex27-mcp.yml
 - type: AgenticAccess
