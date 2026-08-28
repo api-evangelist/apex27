@@ -17,6 +17,18 @@ description: Apex27 Limited is a United Kingdom estate agency CRM vendor, founde
   certification exists for Apex27 or for the UK market at all, since RESO is a NAR/MLS construct
   with no UK counterpart. Apex27 publishes no open data; the UK's open property layer belongs
   to HM Land Registry and Ordnance Survey, not to the CRM vendors.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://apex27.co.uk/img/icon.png
 tags:
 - Real-Estate
