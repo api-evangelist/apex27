@@ -550,6 +550,8 @@ apis:
   humanURL: https://apex27.co.uk/integration/n8n
   baseURL: https://api.apex27.co.uk
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
@@ -660,6 +662,8 @@ apis:
   humanURL: https://apex27.co.uk/integration/n8n
   baseURL: https://api.apex27.co.uk
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
@@ -704,6 +708,8 @@ apis:
   humanURL: https://apex27.co.uk/integration/n8n
   baseURL: https://api.apex27.co.uk
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -770,6 +776,8 @@ apis:
   humanURL: https://apex27.co.uk/integration/n8n
   baseURL: https://api.apex27.co.uk
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
