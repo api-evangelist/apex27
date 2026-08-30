@@ -1,0 +1,215 @@
+openapi: 3.2.0
+info:
+  title: Apex27 Portal Enquiries API
+  version: 0.1.0
+  summary: Per-tenant, website-facing search and enquiry API powering Apex27-built estate agency websites.
+  description: 'API Evangelist DERIVED description of the Apex27 Portal API.
+
+
+    Apex27 publishes no OpenAPI, Swagger or reference documentation for this surface. This document was derived mechanically from Apex27''s OWN published n8n community node — npm n8n-nodes-apex27portal@0.1.0, publisher "james_apex27" — which contains the complete operation set, query and form parameters, enumerations and the auth mechanism.
+
+
+    It is NOT a provider-published contract. The Portal API has no shared host: the base URL is each agency''s own Apex27 portal domain with `/api` appended. The server URL below uses the vendor''s OWN published placeholder host verbatim; substitute the agency domain. Authentication is an `api_key` query-string parameter issued under Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section.'
+  contact:
+    name: Apex27
+    url: https://apex27.co.uk/contact-apex27
+  x-apievangelist-provenance:
+    method: derived
+    generated: '2026-07-26'
+    provider_published: false
+    source: https://www.npmjs.com/package/n8n-nodes-apex27portal (v0.1.0, dist/nodes/Apex27Portal/Apex27Portal.node.js)
+    source_publisher: james_apex27 (Apex27)
+    evidence:
+    - kind: npm-package
+      url: https://registry.npmjs.org/n8n-nodes-apex27portal
+      note: v0.1.0 — Apex27Portal.node.js holds every endpoint and parameter reproduced here.
+    - kind: npm-package
+      url: https://registry.npmjs.org/n8n-nodes-apex27portal
+      note: Apex27PortalApi.credentials.js declares the api_key query parameter and the https://portal-abcd1234.apex27.co.uk/api base-URL placeholder used as the server below.
+    caveat: Per-tenant API. There is no shared production host to probe, so no live status codes were recorded for this surface.
+servers:
+- url: https://portal-abcd1234.apex27.co.uk/api
+  description: Per-tenant portal host. Vendor-published placeholder — replace with the agency's own Apex27 website domain + /api.
+security:
+- PortalApiKey: []
+tags:
+- name: Enquiries
+  description: Website enquiries and valuation requests.
+paths:
+  /contact:
+    post:
+      operationId: contactAgent
+      summary: Send an enquiry to the agent
+      description: Submit a website enquiry against a listing, a listing reference or a branch.
+      tags:
+      - Enquiries
+      parameters:
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Portal API key, issued under Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section.
+      requestBody:
+        required: true
+        description: Form-encoded enquiry. The vendor node posts this as application/x-www-form-urlencoded.
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - first_name
+              - last_name
+              - email
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                listing_id:
+                  type: integer
+                  description: One of listing_id, listing_reference or branch_id targets the enquiry.
+                listing_reference:
+                  type: string
+                branch_id:
+                  type: integer
+                request_listing_details:
+                  type: integer
+                  enum:
+                  - 0
+                  - 1
+                request_viewing:
+                  type: integer
+                  enum:
+                  - 0
+                  - 1
+                request_valuation:
+                  type: integer
+                  enum:
+                  - 0
+                  - 1
+                source_id:
+                  type: integer
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          description: Unauthorised. The api_key query parameter is missing or invalid for this portal.
+  /request-valuation:
+    post:
+      operationId: requestValuation
+      summary: Request a valuation
+      description: Submit a market-appraisal request from the agency website.
+      tags:
+      - Enquiries
+      parameters:
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Portal API key, issued under Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section.
+      requestBody:
+        required: true
+        description: Form-encoded valuation request.
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - first_name
+              - last_name
+              - email
+              - address_1
+              - city
+              - postal_code
+              - transaction_type
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                address_1:
+                  type: string
+                city:
+                  type: string
+                postal_code:
+                  type: string
+                transaction_type:
+                  type: string
+                  enum:
+                  - sales
+                  - lettings
+                  - commercial_sales
+                  - commercial_lettings
+                  - holiday_lettings
+                  - land
+                title:
+                  type: string
+                  enum:
+                  - mr
+                  - mrs
+                  - miss
+                  - ms
+                  - dr
+                  - prof
+                country:
+                  type: string
+                tenure:
+                  type: string
+                  enum:
+                  - freehold
+                  - leasehold
+                  - share_of_freehold
+                  - commonhold
+                condition:
+                  type: string
+                  enum:
+                  - new_build
+                  - good
+                  - average
+                  - poor
+                furnished:
+                  type: string
+                  enum:
+                  - furnished
+                  - part_furnished
+                  - unfurnished
+                outside_spaces[]:
+                  type: array
+                  items:
+                    type: string
+                latitude:
+                  type: number
+                longitude:
+                  type: number
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          description: Unauthorised. The api_key query parameter is missing or invalid for this portal.
+components:
+  securitySchemes:
+    PortalApiKey:
+      type: apiKey
+      in: query
+      name: api_key
+      description: Portal API key from Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section.

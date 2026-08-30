@@ -1,0 +1,314 @@
+openapi: 3.2.0
+info:
+  title: Apex27 CRM Offers API
+  version: 1.0.4
+  summary: REST interface over the Apex27 estate agency CRM (UK sales, lettings and commercial).
+  description: 'API Evangelist DERIVED description of the Apex27 CRM API.
+
+
+    Apex27 publishes no OpenAPI, Swagger, Postman collection or reference documentation. The documentation URL declared inside Apex27''s own npm credential (https://docs.apex27.co.uk) returned HTTP 404 on 2026-07-26. This document was derived mechanically from Apex27''s OWN published n8n community node — npm n8n-nodes-apex27crm@1.0.4, publisher "james_apex27" — which contains the complete request map (paths, HTTP methods, path parameters, query filters, auth header, both environment base URLs and the pagination bounds).
+
+
+    It is NOT a provider-published contract. Response schemas are intentionally left open (`type: object`) because no response shape is published anywhere; only the 401 envelope is recorded verbatim from a live probe of https://api.apex27.co.uk. Authentication is an `x-api-key` request header issued to paying customers inside the CRM admin panel — there is no self-serve developer signup and no sandbox.'
+  contact:
+    name: Apex27
+    url: https://apex27.co.uk/contact-apex27
+  x-apievangelist-provenance:
+    method: derived
+    generated: '2026-07-26'
+    provider_published: false
+    source: https://www.npmjs.com/package/n8n-nodes-apex27crm (v1.0.4, dist/nodes/Apex27Crm/Apex27Crm.node.js)
+    source_publisher: james_apex27 (Apex27)
+    evidence:
+    - kind: npm-package
+      url: https://registry.npmjs.org/n8n-nodes-apex27crm
+      note: v1.0.4 — dist/nodes/Apex27Crm/Apex27Crm.node.js holds every method+URL pair reproduced here.
+    - kind: live-probe
+      url: https://api.apex27.co.uk/
+      status: 401
+      note: Body {"success":false,"message":"Unauthorised.","errors":[]} — the 401 envelope recorded in components.schemas.Error.
+    - kind: live-probe
+      url: https://api.apex27.co.uk/branches
+      status: 401
+    - kind: live-probe
+      url: https://api.apex27.co.uk/listings
+      status: 401
+    - kind: live-probe
+      url: https://api.apex27.co.uk/webhooks
+      status: 401
+    - kind: live-probe
+      url: https://api.apex27.co.uk/properties
+      status: 404
+      note: Confirms the 401s are real routes rather than a blanket auth wall.
+    - kind: dead-link
+      url: https://docs.apex27.co.uk
+      status: 404
+      note: documentationUrl declared inside Apex27CrmApi.credentials.js.
+servers:
+- url: https://api.apex27.co.uk
+  description: Production
+- url: https://dev-api.apex27.co.uk
+  description: Development (key-gated, not an open sandbox)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Offers
+  description: Offers made against listings.
+paths:
+  /offers:
+    get:
+      operationId: listOffers
+      summary: Get all offers across listings
+      description: Get all offers across listings. Derived from the request the Apex27-published n8n node issues for this resource and operation.
+      tags:
+      - Offers
+      parameters:
+      - name: page
+        in: query
+        required: false
+        description: Page number (minimum 1).
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: pageSize
+        in: query
+        required: false
+        description: Records per page (minimum 25, maximum 250).
+        schema:
+          type: integer
+          minimum: 25
+          maximum: 250
+          default: 25
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/offers:
+    get:
+      operationId: listListingOffers
+      summary: Get offers for a listing
+      description: Get offers for a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation.
+      tags:
+      - Offers
+      parameters:
+      - name: listingId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Apex27 listing identifier.
+      - name: page
+        in: query
+        required: false
+        description: Page number (minimum 1).
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: pageSize
+        in: query
+        required: false
+        description: Records per page (minimum 25, maximum 250).
+        schema:
+          type: integer
+          minimum: 25
+          maximum: 250
+          default: 25
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createListingOffer
+      summary: Create an offer on a listing
+      description: Create an offer on a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation.
+      tags:
+      - Offers
+      parameters:
+      - name: listingId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Apex27 listing identifier.
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /listings/{listingId}/offers/{offerId}:
+    get:
+      operationId: getListingOffer
+      summary: Get an offer
+      description: Get an offer. Derived from the request the Apex27-published n8n node issues for this resource and operation.
+      tags:
+      - Offers
+      parameters:
+      - name: listingId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Apex27 listing identifier.
+      - name: offerId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateListingOffer
+      summary: Update an offer
+      description: Update an offer. Derived from the request the Apex27-published n8n node issues for this resource and operation.
+      tags:
+      - Offers
+      parameters:
+      - name: listingId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Apex27 listing identifier.
+      - name: offerId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteListingOffer
+      summary: Delete an offer
+      description: Delete an offer. Derived from the request the Apex27-published n8n node issues for this resource and operation.
+      tags:
+      - Offers
+      parameters:
+      - name: listingId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Apex27 listing identifier.
+      - name: offerId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Error:
+      type: object
+      description: Apex27 CRM API error envelope, recorded verbatim from a live 401 response.
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+      required:
+      - success
+      - message
+      examples:
+      - success: false
+        message: Unauthorised.
+        errors: []
+  responses:
+    NotFound:
+      description: The requested resource or route does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorised:
+      description: Unauthorised. The `x-api-key` header is missing, malformed or not valid for this tenant.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            success: false
+            message: Unauthorised.
+            errors: []
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key issued to a paying Apex27 tenant from the CRM admin panel. No self-serve issuance.

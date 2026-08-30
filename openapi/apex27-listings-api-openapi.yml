@@ -1,0 +1,733 @@
+openapi: 3.2.0
+info:
+  title: Apex27 Listings API
+  contact:
+    name: Apex27
+    url: https://apex27.co.uk/contact-apex27
+  x-refined-note:
+  - x-apievangelist-provenance differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged Listings across 2 of this provider''s published API definitions: apex27-crm-api-openapi.yml, apex27-portal-api-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.apex27.co.uk
+  description: Production
+- url: https://dev-api.apex27.co.uk
+  description: Development (key-gated, not an open sandbox)
+- url: https://portal-abcd1234.apex27.co.uk/api
+  description: Per-tenant portal host. Vendor-published placeholder — replace with the agency's own Apex27 website domain + /api.
+tags:
+- name: Listings
+  description: Sales, lettings, land and commercial property records.
+paths:
+  /listings:
+    get:
+      operationId: listListings
+      summary: Get many listings
+      description: Get many listings. Derived from the request the Apex27-published n8n node issues for this resource and operation.
+      tags:
+      - Listings
+      parameters:
+      - name: branchId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: contactId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: uuid
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: externalId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: transactionType
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - Sale
+          - Rent
+          - Land
+          - Commercial Sale
+          - Commercial Rent
+      - name: minBeds
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: minBaths
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: minPrice
+        in: query
+        required: false
+        schema:
+          type: number
+      - name: maxPrice
+        in: query
+        required: false
+        schema:
+          type: number
+      - name: city
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: websiteStatus
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: mainSearchRegionId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: archived
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: activeTenancies
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: minDtsCreatedUpdated
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: minDtsUpdated
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: includeContacts
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: includeImages
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: includeOffers
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: includeValuations
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: includeRooms
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: page
+        in: query
+        required: false
+        description: Page number (minimum 1).
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: pageSize
+        in: query
+        required: false
+        description: Records per page (minimum 25, maximum 250).
+        schema:
+          type: integer
+          minimum: 25
+          maximum: 250
+          default: 25
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security:
+      - ApiKeyAuth: []
+    post:
+      operationId: createListing
+      summary: Create a listing
+      description: Create a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation.
+      tags:
+      - Listings
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              required:
+              - branchId
+              - contactId
+              properties:
+                branchId: {}
+                contactId: {}
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security:
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.apex27.co.uk
+      description: Production
+    - url: https://dev-api.apex27.co.uk
+      description: Development (key-gated, not an open sandbox)
+  /listings/{listingId}:
+    get:
+      operationId: getListing
+      summary: Get a listing
+      description: Get a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation.
+      tags:
+      - Listings
+      parameters:
+      - name: listingId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Apex27 listing identifier.
+      - name: includeContacts
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: includeImages
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: includeOffers
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: includeValuations
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: includeRooms
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security:
+      - ApiKeyAuth: []
+    put:
+      operationId: replaceListing
+      summary: Replace a listing in full
+      description: Replace a listing in full. Derived from the request the Apex27-published n8n node issues for this resource and operation.
+      tags:
+      - Listings
+      parameters:
+      - name: listingId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Apex27 listing identifier.
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security:
+      - ApiKeyAuth: []
+    patch:
+      operationId: patchListing
+      summary: Partially update a listing
+      description: Partially update a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation.
+      tags:
+      - Listings
+      parameters:
+      - name: listingId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Apex27 listing identifier.
+      requestBody:
+        required: true
+        description: Request body. The Apex27 CRM API accepts a JSON object; the vendor node passes the object through unmodified.
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security:
+      - ApiKeyAuth: []
+    delete:
+      operationId: deleteListing
+      summary: Delete a listing
+      description: Delete a listing. Derived from the request the Apex27-published n8n node issues for this resource and operation.
+      tags:
+      - Listings
+      parameters:
+      - name: listingId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Apex27 listing identifier.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorised'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security:
+      - ApiKeyAuth: []
+    servers:
+    - url: https://api.apex27.co.uk
+      description: Production
+    - url: https://dev-api.apex27.co.uk
+      description: Development (key-gated, not an open sandbox)
+  /get-listings:
+    get:
+      operationId: getListings
+      summary: Search listings
+      description: Search the agency portal inventory across sales, lettings, commercial and land.
+      tags:
+      - Listings
+      parameters:
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Portal API key, issued under Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section.
+      - name: transaction_type
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - sales
+          - lettings
+          - commercial_sales
+          - commercial_lettings
+          - holiday_lettings
+          - land
+        description: Required if property_class is not set.
+      - name: property_class
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - sale
+          - rent
+        description: Required if transaction_type is not set.
+      - name: city
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: county
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: country
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: location
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: property_type
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: keywords[]
+        in: query
+        required: false
+        schema:
+          type: array
+        description: Repeatable keyword filter.
+      - name: min_price
+        in: query
+        required: false
+        schema:
+          type: number
+      - name: max_price
+        in: query
+        required: false
+        schema:
+          type: number
+      - name: min_beds
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: max_beds
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: min_baths
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: website_status
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: search_region_ids[]
+        in: query
+        required: false
+        schema:
+          type: array
+        description: Repeatable search-region identifier filter.
+      - name: main_search_region_id
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: min_gross_yield
+        in: query
+        required: false
+        schema:
+          type: number
+      - name: overseas
+        in: query
+        required: false
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+        description: Boolean flag sent as 1 or 0.
+      - name: featured
+        in: query
+        required: false
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+        description: Boolean flag sent as 1 or 0.
+      - name: include_sstc
+        in: query
+        required: false
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+        description: Include Sold STC / Let Agreed. Sent as 1 or 0.
+      - name: sw
+        in: query
+        required: false
+        schema:
+          type: string
+        description: South-west corner of a bounding box.
+      - name: ne
+        in: query
+        required: false
+        schema:
+          type: string
+        description: North-east corner of a bounding box.
+      - name: image_count
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: image_size
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - tiny
+          - small
+          - medium
+          - large
+          - custom
+      - name: image_mode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: image_width
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: image_height
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - featured
+          - newest
+          - oldest
+          - highest_price
+          - lowest_price
+          - nearest
+          - newly_instructed
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          description: Unauthorised. The api_key query parameter is missing or invalid for this portal.
+      security:
+      - PortalApiKey: []
+    servers:
+    - url: https://portal-abcd1234.apex27.co.uk/api
+      description: Per-tenant portal host. Vendor-published placeholder — replace with the agency's own Apex27 website domain + /api.
+  /get-listing:
+    get:
+      operationId: getListing
+      summary: Get a listing
+      description: Retrieve a single listing by identifier, with image rendering options.
+      tags:
+      - Listings
+      parameters:
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Portal API key, issued under Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section.
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: image_size
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - tiny
+          - small
+          - medium
+          - large
+          - custom
+      - name: image_mode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: image_width
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: image_height
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          description: Unauthorised. The api_key query parameter is missing or invalid for this portal.
+      security:
+      - PortalApiKey: []
+    servers:
+    - url: https://portal-abcd1234.apex27.co.uk/api
+      description: Per-tenant portal host. Vendor-published placeholder — replace with the agency's own Apex27 website domain + /api.
+  /get-search-options:
+    get:
+      operationId: getSearchOptions
+      summary: Get search options
+      description: Retrieve the filter vocabularies (regions, property types, price bands) the portal search accepts.
+      tags:
+      - Listings
+      parameters:
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Portal API key, issued under Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          description: Unauthorised. The api_key query parameter is missing or invalid for this portal.
+      security:
+      - PortalApiKey: []
+    servers:
+    - url: https://portal-abcd1234.apex27.co.uk/api
+      description: Per-tenant portal host. Vendor-published placeholder — replace with the agency's own Apex27 website domain + /api.
+components:
+  schemas:
+    Error:
+      type: object
+      description: Apex27 CRM API error envelope, recorded verbatim from a live 401 response.
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+      required:
+      - success
+      - message
+      examples:
+      - success: false
+        message: Unauthorised.
+        errors: []
+  responses:
+    NotFound:
+      description: The requested resource or route does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorised:
+      description: Unauthorised. The `x-api-key` header is missing, malformed or not valid for this tenant.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            success: false
+            message: Unauthorised.
+            errors: []
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key issued to a paying Apex27 tenant from the CRM admin panel. No self-serve issuance.
+    PortalApiKey:
+      type: apiKey
+      in: query
+      name: api_key
+      description: Portal API key from Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section.
+x-refined-from:
+- apex27-crm-api-openapi.yml
+- apex27-portal-api-openapi.yml

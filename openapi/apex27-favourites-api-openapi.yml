@@ -1,0 +1,125 @@
+openapi: 3.2.0
+info:
+  title: Apex27 Portal Favourites API
+  version: 0.1.0
+  summary: Per-tenant, website-facing search and enquiry API powering Apex27-built estate agency websites.
+  description: 'API Evangelist DERIVED description of the Apex27 Portal API.
+
+
+    Apex27 publishes no OpenAPI, Swagger or reference documentation for this surface. This document was derived mechanically from Apex27''s OWN published n8n community node — npm n8n-nodes-apex27portal@0.1.0, publisher "james_apex27" — which contains the complete operation set, query and form parameters, enumerations and the auth mechanism.
+
+
+    It is NOT a provider-published contract. The Portal API has no shared host: the base URL is each agency''s own Apex27 portal domain with `/api` appended. The server URL below uses the vendor''s OWN published placeholder host verbatim; substitute the agency domain. Authentication is an `api_key` query-string parameter issued under Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section.'
+  contact:
+    name: Apex27
+    url: https://apex27.co.uk/contact-apex27
+  x-apievangelist-provenance:
+    method: derived
+    generated: '2026-07-26'
+    provider_published: false
+    source: https://www.npmjs.com/package/n8n-nodes-apex27portal (v0.1.0, dist/nodes/Apex27Portal/Apex27Portal.node.js)
+    source_publisher: james_apex27 (Apex27)
+    evidence:
+    - kind: npm-package
+      url: https://registry.npmjs.org/n8n-nodes-apex27portal
+      note: v0.1.0 — Apex27Portal.node.js holds every endpoint and parameter reproduced here.
+    - kind: npm-package
+      url: https://registry.npmjs.org/n8n-nodes-apex27portal
+      note: Apex27PortalApi.credentials.js declares the api_key query parameter and the https://portal-abcd1234.apex27.co.uk/api base-URL placeholder used as the server below.
+    caveat: Per-tenant API. There is no shared production host to probe, so no live status codes were recorded for this surface.
+servers:
+- url: https://portal-abcd1234.apex27.co.uk/api
+  description: Per-tenant portal host. Vendor-published placeholder — replace with the agency's own Apex27 website domain + /api.
+security:
+- PortalApiKey: []
+tags:
+- name: Favourites
+  description: Saved listings for a portal contact.
+paths:
+  /add-favourite:
+    post:
+      operationId: addFavourite
+      summary: Add a listing to a contact favourites
+      description: Save a listing against a portal contact.
+      tags:
+      - Favourites
+      parameters:
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Portal API key, issued under Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section.
+      requestBody:
+        required: true
+        description: Form-encoded favourite.
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - listing_id
+              - contact_id
+              properties:
+                listing_id:
+                  type: integer
+                contact_id:
+                  type: integer
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          description: Unauthorised. The api_key query parameter is missing or invalid for this portal.
+  /remove-favourite:
+    post:
+      operationId: removeFavourite
+      summary: Remove a listing from a contact favourites
+      description: Remove a saved listing from a portal contact.
+      tags:
+      - Favourites
+      parameters:
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Portal API key, issued under Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section.
+      requestBody:
+        required: true
+        description: Form-encoded favourite.
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - listing_id
+              - contact_id
+              properties:
+                listing_id:
+                  type: integer
+                contact_id:
+                  type: integer
+              additionalProperties: true
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          description: Unauthorised. The api_key query parameter is missing or invalid for this portal.
+components:
+  securitySchemes:
+    PortalApiKey:
+      type: apiKey
+      in: query
+      name: api_key
+      description: Portal API key from Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section.
