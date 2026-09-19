@@ -343,6 +343,8 @@ apis:
   humanURL: https://apex27.co.uk/integration/n8n
   baseURL: https://api.apex27.co.uk
   tags:
+  - Inspection
+  tags_raw:
   - Inspections
   properties:
   - type: OpenAPI
@@ -745,6 +747,8 @@ apis:
   humanURL: https://apex27.co.uk/integration/n8n
   baseURL: https://api.apex27.co.uk
   tags:
+  - Valuation
+  tags_raw:
   - Valuations
   properties:
   - type: OpenAPI
