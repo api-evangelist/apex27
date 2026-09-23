@@ -3,13 +3,7 @@ info:
   title: Apex27 Portal Statistics API
   version: 0.1.0
   summary: Per-tenant, website-facing search and enquiry API powering Apex27-built estate agency websites.
-  description: 'API Evangelist DERIVED description of the Apex27 Portal API.
-
-
-    Apex27 publishes no OpenAPI, Swagger or reference documentation for this surface. This document was derived mechanically from Apex27''s OWN published n8n community node — npm n8n-nodes-apex27portal@0.1.0, publisher "james_apex27" — which contains the complete operation set, query and form parameters, enumerations and the auth mechanism.
-
-
-    It is NOT a provider-published contract. The Portal API has no shared host: the base URL is each agency''s own Apex27 portal domain with `/api` appended. The server URL below uses the vendor''s OWN published placeholder host verbatim; substitute the agency domain. Authentication is an `api_key` query-string parameter issued under Admin Panel > Websites > [Your Website] > Integrations tab > Portal API section.'
+  description: API Evangelist DERIVED description of the Apex27 Portal API.
   contact:
     name: Apex27
     url: https://apex27.co.uk/contact-apex27
