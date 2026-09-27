@@ -591,7 +591,7 @@ paths:
       description: Per-tenant portal host. Vendor-published placeholder — replace with the agency's own Apex27 website domain + /api.
   /get-listing:
     get:
-      operationId: getListing
+      operationId: getGetListing
       summary: Get a listing
       description: Retrieve a single listing by identifier, with image rendering options.
       tags:
@@ -646,6 +646,8 @@ paths:
           description: Unauthorised. The api_key query parameter is missing or invalid for this portal.
       security:
       - PortalApiKey: []
+      x-operation-id-source: normalized
+      x-operation-id-original: getListing
     servers:
     - url: https://portal-abcd1234.apex27.co.uk/api
       description: Per-tenant portal host. Vendor-published placeholder — replace with the agency's own Apex27 website domain + /api.
