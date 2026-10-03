@@ -682,12 +682,6 @@ paths:
       description: Per-tenant portal host. Vendor-published placeholder — replace with the agency's own Apex27 website domain + /api.
 components:
   responses:
-    NotFound:
-      description: The requested resource or route does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorised:
       description: Unauthorised. The `x-api-key` header is missing, malformed or not valid for this tenant.
       content:
@@ -698,6 +692,12 @@ components:
             success: false
             message: Unauthorised.
             errors: []
+    NotFound:
+      description: The requested resource or route does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
