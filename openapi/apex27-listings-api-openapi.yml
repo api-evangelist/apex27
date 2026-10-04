@@ -681,23 +681,6 @@ paths:
     - url: https://portal-abcd1234.apex27.co.uk/api
       description: Per-tenant portal host. Vendor-published placeholder — replace with the agency's own Apex27 website domain + /api.
 components:
-  responses:
-    Unauthorised:
-      description: Unauthorised. The `x-api-key` header is missing, malformed or not valid for this tenant.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            success: false
-            message: Unauthorised.
-            errors: []
-    NotFound:
-      description: The requested resource or route does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -719,6 +702,23 @@ components:
       - success: false
         message: Unauthorised.
         errors: []
+  responses:
+    Unauthorised:
+      description: Unauthorised. The `x-api-key` header is missing, malformed or not valid for this tenant.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            success: false
+            message: Unauthorised.
+            errors: []
+    NotFound:
+      description: The requested resource or route does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
