@@ -2,7 +2,7 @@
 name: Sync Apex27 listings into an external system
 description: Pull the agency's live property inventory out of the Apex27 CRM API, expand the media and rooms an agent cares about, and keep it current with incremental polling.
 api: openapi/apex27-crm-api-openapi.yml
-operations: [listListings, getListing, listListingMedia, listListingRooms, listListingLinks, listSearchRegions, listBranches]
+operations: [listListings, getGetListing, listListingMedia, listListingRooms, listListingLinks, listSearchRegions, listBranches]
 generated: '2026-07-26'
 method: generated
 ---

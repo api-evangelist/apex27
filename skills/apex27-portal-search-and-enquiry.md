@@ -2,7 +2,7 @@
 name: Search an Apex27 agency website and submit an enquiry
 description: Use the per-tenant Apex27 Portal API to search an agency's public inventory, render listings, capture an enquiry or valuation request, and manage a visitor's saved properties.
 api: openapi/apex27-portal-api-openapi.yml
-operations: [getSearchOptions, getListings, getListing, contactAgent, requestValuation, addFavourite, removeFavourite, getStatistics]
+operations: [getSearchOptions, getListings, getGetListing, contactAgent, requestValuation, addFavourite, removeFavourite, getStatistics]
 generated: '2026-07-26'
 method: generated
 ---

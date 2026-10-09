@@ -2,7 +2,7 @@
 name: Capture a lead and book a viewing in Apex27
 description: Take an inbound property enquiry, create or match the contact, raise the lead, find a real appointment slot and book the viewing against the listing.
 api: openapi/apex27-crm-api-openapi.yml
-operations: [listContacts, createContact, createLead, getViewingAvailability, createListingViewing, createTask, createContactNote, getListing]
+operations: [listContacts, createContact, createLead, getViewingAvailability, createListingViewing, createTask, createContactNote, getGetListing]
 generated: '2026-07-26'
 method: generated
 ---
