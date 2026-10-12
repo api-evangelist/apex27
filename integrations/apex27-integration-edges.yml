@@ -1,0 +1,254 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/apex27/integrations
+checked:
+- https://composio.dev/toolkits/apex27
+- https://monid.ai/tools/apex27
+- https://n8n.io/integrations/apex27/
+- https://zapier.com/apps/apex27/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: apex27
+  url: https://zapier.com/apps/apex27/integrations
+  external_url: https://www.apex27.co.uk/
+  partner_tier: BRONZE
+  triggers:
+  - key: new_branch
+    label: New / Updated Branch
+  - key: new_completion
+    label: New / Updated Completion
+  - key: new_contact
+    label: New / Updated Contact
+  - key: new_issue
+    label: New / Updated Issue
+  - key: new_lead
+    label: New / Updated Lead
+  - key: new_listing
+    label: New / Updated Listing
+  - key: new_offer
+    label: New / Updated Offer
+  - key: new_task
+    label: New / Updated Task
+  - key: new_tenancy
+    label: New / Updated Tenancy
+  - key: new_user
+    label: New / Updated User
+  - key: new_valuation
+    label: New / Updated Valuation
+  - key: new_viewing
+    label: New / Updated Viewing
+  actions:
+  - key: create_call_log
+    label: Create Call Log
+  - key: create_contact
+    label: Create / Update Contact
+  - key: create_contact_note
+    label: Create / Update Contact Note
+  - key: create_lead
+    label: Create / Update Lead
+  - key: create_listing
+    label: Create / Update Listing
+  - key: create_listing_note
+    label: Create / Update Listing Note
+  - key: create_task
+    label: Create / Update Task
+  - key: notification
+    label: Create Notification
+  - key: upload_document
+    label: Upload Document
+  - key: upload_image_for_listing
+    label: Upload Image for Listing
+  searches:
+  - key: find_contact
+    label: Find Contact
+  - key: find_lead
+    label: Find Lead
+  - key: find_listing
+    label: Find Listing
+edges:
+- partner_name: Wufoo
+  partner: wufoo
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apex27/integrations/wufoo
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.wufoo.com/
+- partner_name: Aircall
+  partner: aircall
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apex27/integrations/aircall
+  direction: third-party
+  category: Developer Tools
+  partner_url: https://aircall.io/
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apex27/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apex27/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: Salesforce
+  partner: salesforce
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apex27/integrations/salesforce
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.salesforce.com/
+- partner_name: WildApricot
+  partner: wildapricot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apex27/integrations/wildapricot
+  direction: third-party
+  category: Contact Management
+  partner_url: https://www.wildapricot.com/
+- partner_name: CircleLoop
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apex27/integrations/circleloop
+  direction: third-party
+  category: Phone & SMS
+  partner_url: https://www.circleloop.com/
+- partner_name: Stannp
+  partner: stannp
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apex27/integrations/stannp
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.stannp.com/
+- partner_name: MoreApp
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apex27/integrations/moreapp
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://moreapp.com/
+- partner_name: Alpaca
+  partner: alpaca
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apex27/integrations/alpaca
+  direction: third-party
+  category: App Builder
+  partner_url: http://alpaca.markets/
+- partner_name: Bundeling
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/apex27/integrations/bundeling
+  direction: third-party
+  category: Communication
+  partner_url: https://bundeling.com/
+templates:
+- title: Create Trello cards for new or updated leads in Apex27
+  url: https://zapier.com/apps/Apex27/integrations/trello/1529035/create-trello-cards-for-new-or-updated-leads-in-apex27
+  apps:
+  - Apex27
+  - trello
+- title: Add new or updated Apex27 listings to Google Sheets as rows
+  url: https://zapier.com/apps/Apex27/integrations/google-sheets/1624159/add-new-or-updated-apex27-listings-to-google-sheets-as-rows
+  apps:
+  - Apex27
+  - google-sheets
+- title: Create Facebook Pages posts from new or updated Apex27 listings
+  url: https://zapier.com/apps/Apex27/integrations/facebook-pages/1633537/create-facebook-pages-posts-from-new-or-updated-apex27-listings
+  apps:
+  - Apex27
+  - facebook-pages
+- title: Manage new or updated Apex27 contacts by creating or updating subscribers in MailerLite
+  url: https://zapier.com/apps/Apex27/integrations/mailerlite/1668003/manage-new-or-updated-apex27-contacts-by-creating-or-updating-subscribers-in-mailerlite
+  apps:
+  - Apex27
+  - mailerlite
+- title: Update and manage LeadConnector contacts instantly when new or updated contacts appear in Apex27
+  url: https://zapier.com/apps/Apex27/integrations/leadconnector/1720585/update-and-manage-leadconnector-contacts-instantly-when-new-or-updated-contacts-appear-in-apex27
+  apps:
+  - Apex27
+  - leadconnector
+- title: Send WhatsApp Notifications messages when new or updated leads are detected in Apex27
+  url: https://zapier.com/apps/Apex27/integrations/whatsapp-notifications/1745327/send-whatsapp-notifications-messages-when-new-or-updated-leads-are-detected-in-apex27
+  apps:
+  - Apex27
+  - whatsapp-notifications
+- title: Maintain contacts in ActiveCampaign by tracking new or updated contacts from Apex27
+  url: https://zapier.com/apps/Apex27/integrations/activecampaign/255588720/maintain-contacts-in-activecampaign-by-tracking-new-or-updated-contacts-from-apex27
+  apps:
+  - Apex27
+  - activecampaign
+- title: Update contacts in Apex27 when pipeline stages change in LeadConnector
+  url: https://zapier.com/apps/Apex27/integrations/leadconnector/255640585/update-contacts-in-apex27-when-pipeline-stages-change-in-leadconnector
+  apps:
+  - leadconnector
+  - Apex27
+- title: Upload new Jotform submissions as documents in Apex27
+  url: https://zapier.com/apps/Apex27/integrations/jotform/255711788/upload-new-jotform-submissions-as-documents-in-apex27
+  apps:
+  - jotform
+  - Apex27
+- title: Create LinkedIn company updates from new or updated Apex27 listings
+  url: https://zapier.com/apps/Apex27/integrations/linkedin/255724651/create-linkedin-company-updates-from-new-or-updated-apex27-listings
+  apps:
+  - Apex27
+  - linkedin
+- title: Create Facebook Pages posts for new or updated Apex27 listings
+  url: https://zapier.com/apps/Apex27/integrations/facebook-pages/255724764/create-facebook-pages-posts-for-new-or-updated-apex27-listings
+  apps:
+  - Apex27
+  - facebook-pages
+- title: Analyze and return data in AI by Zapier whenever new or updated listings occur in Apex27
+  url: https://zapier.com/apps/Apex27/integrations/ai/255725056/analyze-and-return-data-in-ai-by-zapier-whenever-new-or-updated-listings-occur-in-apex27
+  apps:
+  - Apex27
+  - ai
+template_total: 12
