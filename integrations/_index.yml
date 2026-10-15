@@ -155,7 +155,7 @@
     app_slug: Apex27
     beta: false
     builder: unknown (not in the directory record)
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: apex27-n8n
   label: n8n
@@ -182,5 +182,5 @@
     published: '2026-05-17T10:18:03.315Z'
     matched_on: publisher-email
     builder: provider (package published from the provider's own domain)
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
