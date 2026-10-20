@@ -1,4 +1,4 @@
-generated: '2026-10-12'
+generated: '2026-10-20'
 method: searched
 source:
 - https://zapier.com/apps/apex27/integrations
@@ -9,6 +9,7 @@ checked:
 - https://registry.npmjs.org/-/v1/search?text=keywords:n8n-community-node-package
 - https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/apex27/integrations
+- n8n/integrations/n8n-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -71,127 +72,6 @@ marketplace_apps:
   - key: find_listing
     label: Find Listing
 edges:
-- partner_name: Wufoo
-  partner: wufoo
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/apex27/integrations/wufoo
-  direction: third-party
-  category: Forms & Surveys
-  partner_url: https://www.wufoo.com/
-- partner_name: Aircall
-  partner: aircall
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/apex27/integrations/aircall
-  direction: third-party
-  category: Developer Tools
-  partner_url: https://aircall.io/
-- partner_name: HubSpot
-  partner: hubspot
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/apex27/integrations/hubspot
-  direction: third-party
-  category: Marketing Automation
-  partner_url: http://www.hubspot.com/
-- partner_name: Airtable
-  partner: airtable
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/apex27/integrations/airtable
-  direction: third-party
-  category: Databases
-  partner_url: https://airtable.com/
-- partner_name: Salesforce
-  partner: salesforce
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/apex27/integrations/salesforce
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://www.salesforce.com/
-- partner_name: WildApricot
-  partner: wildapricot
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/apex27/integrations/wildapricot
-  direction: third-party
-  category: Contact Management
-  partner_url: https://www.wildapricot.com/
-- partner_name: CircleLoop
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/apex27/integrations/circleloop
-  direction: third-party
-  category: Phone & SMS
-  partner_url: https://www.circleloop.com/
-- partner_name: Stannp
-  partner: stannp
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/apex27/integrations/stannp
-  direction: third-party
-  category: Marketing Automation
-  partner_url: https://www.stannp.com/
-- partner_name: MoreApp
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/apex27/integrations/moreapp
-  direction: third-party
-  category: Forms & Surveys
-  partner_url: https://moreapp.com/
-- partner_name: Alpaca
-  partner: alpaca
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/apex27/integrations/alpaca
-  direction: third-party
-  category: App Builder
-  partner_url: http://alpaca.markets/
-- partner_name: Bundeling
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/apex27/integrations/bundeling
-  direction: third-party
-  category: Communication
-  partner_url: https://bundeling.com/
 - partner_name: Zapier
   partner: zapier
   partner_match: aggregator
@@ -244,6 +124,153 @@ edges:
     builder: provider (package published from the provider's own domain)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: n8n (n8n-community)
+  partner: n8n
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: n8n-community
+  evidence: https://www.npmjs.com/package/n8n-nodes-apex27crm
+  mirror_of: n8n/integrations/n8n-integration-edges.yml
+  apps: []
+  listing_count: 1
+  detected: '2026-10-19'
+  detected_by: mirror-platform-listings.py
+- partner_name: Wufoo
+  partner: wufoo
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/apex27/integrations/wufoo
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.wufoo.com/
+- partner_name: Aircall
+  partner: aircall
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/apex27/integrations/aircall
+  direction: third-party
+  category: Developer Tools
+  partner_url: https://aircall.io/
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/apex27/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/apex27/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: Salesforce
+  partner: salesforce
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/apex27/integrations/salesforce
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.salesforce.com/
+- partner_name: WildApricot
+  partner: wildapricot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/apex27/integrations/wildapricot
+  direction: third-party
+  category: Contact Management
+  partner_url: https://www.wildapricot.com/
+- partner_name: CircleLoop
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/apex27/integrations/circleloop
+  direction: third-party
+  category: Phone & SMS
+  partner_url: https://www.circleloop.com/
+- partner_name: Stannp
+  partner: stannp
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/apex27/integrations/stannp
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.stannp.com/
+- partner_name: MoreApp
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/apex27/integrations/moreapp
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://moreapp.com/
+- partner_name: Alpaca
+  partner: alpaca
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/apex27/integrations/alpaca
+  direction: third-party
+  category: App Builder
+  partner_url: http://alpaca.markets/
+- partner_name: Bundeling
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/apex27/integrations/bundeling
+  direction: third-party
+  category: Communication
+  partner_url: https://bundeling.com/
 templates:
 - title: Create Trello cards for new or updated leads in Apex27
   url: https://zapier.com/apps/Apex27/integrations/trello/1529035/create-trello-cards-for-new-or-updated-leads-in-apex27
