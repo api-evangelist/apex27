@@ -1,4 +1,4 @@
-# Apex27 (apex27)
+# Apex27
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,88 +66,159 @@
 
 Apex27 Limited is a United Kingdom estate agency CRM vendor, founded in 2019 and headquartered in the UK, selling cloud software to sales, lettings and commercial agents for £35 per user per month. It sits in the middle of the UK residential value chain — between the agent and the portals — capturing leads, applicants, listings, viewings, valuations, offers, sales progression and tenancies, then syndicating listings out to Rightmove, Zoopla, OnTheMarket and others. Because the UK has no MLS and no cooperative listing database, that CRM seat is the only practical route a listing takes to market, and Apex27 is one of the private gatekeepers of it. Apex27 does operate two real HTTP APIs — the Apex27 CRM API at api.apex27.co.uk and a per-tenant Portal API that powers agency websites — but neither has a public developer portal. The documentation URL that Apex27's own published n8n node points at, docs.apex27.co.uk, returns 404, and every CRM endpoint returns 401 Unauthorised without a key issued inside a paid tenant. Access is customer-only, not self-serve. RESO does not apply — no RESO Web API or Data Dictionary certification exists for Apex27 or for the UK market at all, since RESO is a NAR/MLS construct with no UK counterpart. Apex27 publishes no open data; the UK's open property layer belongs to HM Land Registry and Ordnance Survey, not to the CRM vendors.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/apex27/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/apex27/refs/heads/main/apis.yml)
+**Areas:** Real Estate · United Kingdom · PropTech · Property Listings · CRM · Estate Agency · Lettings · Rentals · Property Management · Valuation · Tenancy · Conveyancing
 
-## Tags
+## Apex27 on APIs.io
 
-- Real Estate
-- United Kingdom
-- PropTech
-- Property Listings
-- CRM
-- Estate Agency
-- Lettings
-- Rentals
-- Property Management
-- Valuation
-- Tenancy
-- Conveyancing
+Everything profiled for Apex27 is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/apex27/](https://apis.io/providers/apex27/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (33)
 
-- **Created:** 2026-07-26
-- **Modified:** 2026-07-26
+- [Apex27 Availability API](https://apis.io/apis/apex27/apex27-availability-api/) — Appointment availability for valuations and viewings.
+- [Apex27 Branches API](https://apis.io/apis/apex27/apex27-branches-api/) — Agency branches within the tenant.
+- [Apex27 Call Logs API](https://apis.io/apis/apex27/apex27-call-logs-api/) — Telephone activity recorded against a contact.
+- [Apex27 Client Portal API](https://apis.io/apis/apex27/apex27-client-portal-api/) — Client-portal authentication and sign-in links.
+- [Apex27 Completions API](https://apis.io/apis/apex27/apex27-completions-api/) — Sales completions and progression.
+- [Apex27 Contact Orders API](https://apis.io/apis/apex27/apex27-contact-orders-api/) — Orders placed against a contact.
+- [Apex27 Contact Referrals API](https://apis.io/apis/apex27/apex27-contact-referrals-api/) — Referrals raised against a contact (conveyancing, mortgage, survey).
+- [Apex27 Contacts API](https://apis.io/apis/apex27/apex27-contacts-api/) — Applicants, vendors, landlords, tenants and buyers held in the CRM.
+- [Apex27 Documents API](https://apis.io/apis/apex27/apex27-documents-api/) — Documents attached to listings or contacts.
+- [Apex27 Enquiries API](https://apis.io/apis/apex27/apex27-enquiries-api/) — Website enquiries and valuation requests.
+- [Apex27 Favourites API](https://apis.io/apis/apex27/apex27-favourites-api/) — Saved listings for a portal contact.
+- [Apex27 Global Search API](https://apis.io/apis/apex27/apex27-global-search-api/) — Cross-entity search.
+- [Apex27 Inspections API](https://apis.io/apis/apex27/apex27-inspections-api/) — Property inspections (lettings management).
+- [Apex27 Leads API](https://apis.io/apis/apex27/apex27-leads-api/) — Inbound leads and their pipeline status.
+- [Apex27 Listing Issues API](https://apis.io/apis/apex27/apex27-listing-issues-api/) — Maintenance issues raised against a listing.
+- [Apex27 Listing Keys API](https://apis.io/apis/apex27/apex27-listing-keys-api/) — Key sets held for a listing, including check-out and check-in.
+- [Apex27 Listing Links API](https://apis.io/apis/apex27/apex27-listing-links-api/) — Virtual tours, videos, EPC reports and brochure links on a listing.
+- [Apex27 Listing Media API](https://apis.io/apis/apex27/apex27-listing-media-api/) — Images, EPCs, floorplans, brochures and videos on a listing.
+- [Apex27 Listing Rooms API](https://apis.io/apis/apex27/apex27-listing-rooms-api/) — Room-by-room detail on a listing.
+- [Apex27 Listing Searches API](https://apis.io/apis/apex27/apex27-listing-searches-api/) — Saved applicant listing searches used for matching and alerts.
+- [Apex27 Listings API](https://apis.io/apis/apex27/apex27-listings-api/) — Sales, lettings, land and commercial property records.
+- [Apex27 Notes API](https://apis.io/apis/apex27/apex27-notes-api/) — Free-text notes attached to a contact or a listing.
+- [Apex27 Notifications API](https://apis.io/apis/apex27/apex27-notifications-api/) — In-app notifications to users, branches, listings or contacts.
+- [Apex27 Offers API](https://apis.io/apis/apex27/apex27-offers-api/) — Offers made against listings.
+- [Apex27 Onboarding Checks API](https://apis.io/apis/apex27/apex27-onboarding-checks-api/) — Compliance and onboarding checklists on a listing.
+- [Apex27 Search Regions API](https://apis.io/apis/apex27/apex27-search-regions-api/) — Named geographic search regions.
+- [Apex27 Statistics API](https://apis.io/apis/apex27/apex27-statistics-api/) — Portal inventory statistics.
+- [Apex27 Tasks API](https://apis.io/apis/apex27/apex27-tasks-api/) — Work items assigned to users.
+- [Apex27 Tenancies API](https://apis.io/apis/apex27/apex27-tenancies-api/) — Tenancy agreements and their lifecycle.
+- [Apex27 Users API](https://apis.io/apis/apex27/apex27-users-api/) — CRM users within the tenant.
+- [Apex27 Valuations API](https://apis.io/apis/apex27/apex27-valuations-api/) — Market appraisals and valuation appointments.
+- [Apex27 Viewings API](https://apis.io/apis/apex27/apex27-viewings-api/) — Viewing appointments.
+- [Apex27 Webhooks API](https://apis.io/apis/apex27/apex27-webhooks-api/) — Webhook subscription management.
 
-## APIs
+### Published properties
 
-### Apex27 CRM API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-The Apex27 CRM API is the vendor's REST interface over the estate agency CRM, covering contacts, leads, listings and their media, rooms, keys, notes, offers, viewings, valuations, inspections, issues and onboarding checks, plus branches, users, tasks, documents, tenancies, completions, call logs, notifications, saved listing searches, search regions, global search, client portal sign-in links and webhook subscriptions. It authenticates with an `x-api-key` request header and paginates with `page` and `pageSize` (25-250). The host is live — every probed collection returned HTTP 401 Unauthorised — but there is no public reference documentation; the documentation URL declared in Apex27's own published n8n credential (https://docs.apex27.co.uk) returned HTTP 404 on 2026-07-26. Keys are issued to paying customers inside the CRM admin panel, so this is a customer-only surface, not a self-serve developer API.
+#### AsyncAPI (1)
 
-- **Human URL:** [https://apex27.co.uk/integration/n8n](https://apex27.co.uk/integration/n8n)
-- **Base URL:** `https://api.apex27.co.uk`
+Event-driven and webhook contracts.
 
-#### Tags
+- [Apex27 Webhooks](https://apis.io/asyncapis/apex27/apex27-webhooks/)
 
-- Real Estate
-- CRM
-- Property Listings
-- Lettings
-- Tenancy
-- United Kingdom
+#### MCP servers (1)
 
-#### Properties
+Model Context Protocol servers that expose the API to agents.
 
-- [Documentation](https://apex27.co.uk/integration/n8n)
-- [Integrations](https://apex27.co.uk/integrations)
-- [npm Package](https://www.npmjs.com/package/n8n-nodes-apex27crm)
-- [Sign Up](https://apex27.co.uk/estate-agent-software-sign-up)
+- [apex27](https://apis.io/servers/apex27/apex27/)
 
-### Apex27 Portal API
+#### Agentic access (1)
 
-The Apex27 Portal API is the per-tenant, website-facing API that drives search and enquiry on Apex27-built agency websites. Its documented operations are get-listings, get-listing, get-search-options, get-statistics, contact, request-valuation, add-favourite and remove-favourite, spanning sales, lettings and land inventory with sort and filter options. It has no shared host — the base URL is the agency's own portal domain with /api appended (the vendor's published credential uses the placeholder https://portal-abcd1234.apex27.co.uk/api) — and it authenticates with an `api_key` query-string parameter issued under Admin Panel > Websites > [Your Website] > Integrations. No public documentation page for it was found.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://apex27.co.uk/websites](https://apex27.co.uk/websites)
+- [Apex27 Agentic Access](https://apis.io/agentic-access/apex27/apex27-agentic-access/)
 
-#### Tags
+#### Vocabulary (1)
 
-- Real Estate
-- Property Listings
-- Property Search
-- Valuation
-- United Kingdom
+The provider's domain terms, defined.
 
-#### Properties
+- [Apex27 Vocabulary](https://apis.io/vocabularies/apex27/apex27-vocabulary/)
 
-- [Documentation](https://apex27.co.uk/websites)
-- [npm Package](https://www.npmjs.com/package/n8n-nodes-apex27portal)
+#### Collections (2)
 
-## Common Properties
+Postman and Open Collection request collections.
+
+- [Apex27 CRM API](https://apis.io/collections/apex27/open-apex27-crm-api/)
+- [Apex27 Portal API](https://apis.io/collections/apex27/open-apex27-portal-api/)
+
+#### Overlays (2)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Apex27 Crm Api Overlay](https://apis.io/overlays/apex27/apex27-crm-api-overlay/)
+- [Apex27 Portal Api Overlay](https://apis.io/overlays/apex27/apex27-portal-api-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Apex27 Authentication](https://apis.io/security/apex27/apex27-authentication/)
+- [Apex27 Domain Security](https://apis.io/security/apex27/apex27-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://apex27.co.uk/)
-- [Sign Up](https://apex27.co.uk/estate-agent-software-sign-up)
 - [Pricing](https://apex27.co.uk/estate-agent-software-pricing)
-- [Features](https://apex27.co.uk/estate-agent-software-features)
-- [Integrations](https://apex27.co.uk/integrations)
+- [Sign up](https://apex27.co.uk/estate-agent-software-sign-up)
+- [Support](https://apex27.co.uk/contact-apex27)
 - [Changelog](https://apex27.co.uk/crm-changelog)
 - [Blog](https://apex27.co.uk/estate-agency-blog)
-- [Support](https://apex27.co.uk/contact-apex27)
-- [Terms of Service](https://apex27.co.uk/terms-of-use)
-- [Privacy Policy](https://apex27.co.uk/privacy-policy)
-- [Compliance](https://apex27.co.uk/acceptable-use-policy)
-- [LinkedIn](https://www.linkedin.com/company/apex27)
+- [Terms of service](https://apex27.co.uk/terms-of-use)
+- [Privacy policy](https://apex27.co.uk/privacy-policy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane  
-**Email:** kin@apievangelist.com
+**Kin Score 33.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 25.4 |
+| Contract governance | 8.3 |
+| Operational transparency | 23.7 |
+| Developer ergonomics | 30.4 |
+| Access clarity | 44.7 |
+
+**Agent readiness 20.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/apex27/](https://apis.io/providers/apex27/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Apex27: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/apex27/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
